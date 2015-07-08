@@ -20,12 +20,19 @@ Plugin 'takac/vim-hardtime'
 Plugin 'chriskempson/base16-vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
+Plugin 'wavded/vim-stylus'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
 " Enable file type detection and do language-dependent indenting.
 filetype plugin indent on
+
+" Disable modeline support
+set nomodeline
+
+" Make stylus work
+"autocmd BufNewFile,BufRead *.styl set filetype=stylus
 
 " Allow hidden buffers, don't limit to 1 file per window/split
 set hidden
@@ -88,3 +95,10 @@ nnoremap <leader>b <c-w>w
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Remove right-hand scrollbars
+set guioptions-=r
+
+" Fast plugin install
+nnoremap <leader>i :PluginInstall<cr>
+
