@@ -6,6 +6,7 @@ set encoding=utf-8						" set encoding to utf-8
 set showcmd								" display incomplete commands
 set modelines=1							" check final line of this file for a modeline
 let g:hardtime_default_on=1				" enable hardtime
+set hidden								" allow more than one buffer per split
 
 "" Whitespace
 set nowrap								" don't wrap lines
@@ -25,6 +26,8 @@ call vundle#begin()						" initialize Vundle
 Plugin 'gmarik/Vundle.vim'				" let Vundle manage Vundle, required
 Plugin 'chriskempson/base16-vim'
 Plugin 'takac/vim-hardtime'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-commentary'
 call vundle#end()						" required
 filetype plugin indent on				" load file type plugins + indentation
 " }}}
@@ -45,5 +48,6 @@ endif
 let mapleader=","						" leader to comma
 nmap <leader>v :tabedit $MYVIMRC<CR>	" edit vimrc
 nnoremap <leader>w :w<cr>				" save
+nnoremap <leader>n :E<cr>				" toggle netrw
 " }}}
 " vim:foldmethod=marker:foldlevel=0
