@@ -35,10 +35,15 @@ Plugin 'bling/vim-bufferline'
 Plugin 'moll/vim-bbye'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'ntpeters/vim-better-whitespace'
 call vundle#end()						" required
 filetype plugin indent on				" load file type plugins + indentation
 " }}}
 " Autocompletion {{{
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+
 function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippet()
     if g:ulti_expand_res == 0
