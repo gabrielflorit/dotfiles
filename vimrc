@@ -47,17 +47,19 @@ Plugin 'bling/vim-bufferline'
 " Meta
 Plugin 'takac/vim-hardtime'
 
+" Search
+Plugin 'justinmk/vim-sneak'
+Plugin 'unblevable/quick-scope'
+
 " Misc
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-commentary'
 Plugin 'mattn/emmet-vim'
 Plugin 'moll/vim-bbye'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'justinmk/vim-sneak'
 Plugin 'Raimondi/delimitMate'
+Plugin 'junegunn/vim-easy-align'
 
 " Autocomplete/snippets
 Plugin 'Valloric/YouCompleteMe'
@@ -67,11 +69,13 @@ Plugin 'marijnh/tern_for_vim'
 " Syntax highlighting
 Plugin 'wavded/vim-stylus'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " Git
 Plugin 'tpope/vim-fugitive'
 
 " Text objects
+Plugin 'gcmt/wildfire.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-function'
 Plugin 'kana/vim-textobj-indent'
@@ -123,7 +127,7 @@ endfunction
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
-" this mapping Enter key to <C-y> to chose the current highlight item 
+" this mapping Enter key to <C-y> to chose the current highlight item
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -161,9 +165,15 @@ let g:airline#extensions#default#layout = [
 let mapleader=","						" leader to comma
 nmap <leader>v :tabedit $MYVIMRC<CR>	" edit vimrc
 nnoremap <leader>w :w<cr>				" save
-nnoremap <leader>n :Explore<cr>			" toggle netrw
-nnoremap <leader>q :Bdelete<CR>			" close buffer without closing window
-nnoremap <leader>e :UltiSnipsEdit<cr>	" edit snippets
+
+" netrw: toggle
+nnoremap <leader>n :Explore<cr>
+
+" bbye: close buffer without closing window
+nnoremap <leader>q :Bdelete<CR>
+
+" ultisnips: edit snippets
+nnoremap <leader>e :UltiSnipsEdit<cr>
 nnoremap <leader>gt :Gcommit -v -q %:p<CR> " git add and commit this file
 nnoremap <leader><leader> :Unite -start-insert -no-split file_rec/async:!<CR>
 nnoremap <leader>f :Unite -no-split grep:.<CR>
@@ -172,5 +182,12 @@ nnoremap <Tab> :bnext<CR>				" next buffer
 nnoremap <S-Tab> :bprevious<CR>			" previous buffer
 let g:user_emmet_leader_key='<C-b>'		" emmet leader = b
 nnoremap <silent> <esc> :noh<cr><esc>	" clear search highlight
+
+" easyalign: start in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" easyalign: start interactive for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " }}}
 " vim:foldmethod=marker:foldlevel=0
