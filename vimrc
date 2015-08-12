@@ -53,6 +53,7 @@ Plugin 'unblevable/quick-scope'
 
 " Misc
 Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-commentary'
 Plugin 'mattn/emmet-vim'
 Plugin 'moll/vim-bbye'
@@ -60,6 +61,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Autocomplete/snippets
 Plugin 'Valloric/YouCompleteMe'
@@ -67,6 +69,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'marijnh/tern_for_vim'
 
 " Syntax highlighting
+Plugin 'scrooloose/syntastic'
 Plugin 'wavded/vim-stylus'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -102,6 +105,15 @@ let g:unite_source_grep_recursive_opt=''
 let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
+
+" }}}
+" Syntastic {{{
+
+let g:syntastic_javascript_checkers = ['jscs']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " }}}
 " Autocompletion {{{
