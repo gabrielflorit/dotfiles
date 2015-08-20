@@ -13,7 +13,7 @@ autocmd GUIEnter * set visualbell t_vb=	" no beeping
 
 "" Whitespace
 set nowrap								" don't wrap lines
-set tabstop=4 shiftwidth=4				" a tab is four spaces
+set tabstop=2 shiftwidth=2				" a tab is four spaces
 set backspace=indent,eol,start			" backspace through everything in insert mode
 
 "" Searching
@@ -62,8 +62,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'jcfaria/Vim-R-plugin'
 
-" Autocomplete/snippets
+" " Autocomplete/snippets
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'marijnh/tern_for_vim'
@@ -73,6 +74,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'wavded/vim-stylus'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'chase/vim-ansible-yaml'
 
 " Git
 Plugin 'tpope/vim-fugitive'
@@ -170,6 +172,11 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'z', 'warning' ]
       \ ]
+
+" }}}
+" R {{{
+
+" let vimrplugin_applescript = 0
 
 " }}}
 " Remaps {{{
