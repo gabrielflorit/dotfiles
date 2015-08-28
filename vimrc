@@ -72,7 +72,10 @@ Plugin 'marijnh/tern_for_vim'
 " Syntax highlighting
 Plugin 'scrooloose/syntastic'
 Plugin 'wavded/vim-stylus'
-Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/yajs.vim'
+Plugin 'mxw/vim-jsx'
+" Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'pangloss/vim-javascript'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'chase/vim-ansible-yaml'
 
@@ -116,6 +119,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+au BufRead,BufNewFile *.es6 set ft=javascript
 
 " }}}
 " Autocompletion {{{
