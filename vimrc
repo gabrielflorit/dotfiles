@@ -55,14 +55,14 @@ Plugin 'unblevable/quick-scope'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-commentary'
-Plugin 'mattn/emmet-vim'
+"Plugin 'mattn/emmet-vim'
 Plugin 'moll/vim-bbye'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'Raimondi/delimitMate'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'jcfaria/Vim-R-plugin'
+"Plugin 'Raimondi/delimitMate'
+"Plugin 'junegunn/vim-easy-align'
+"Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'jcfaria/Vim-R-plugin'
 
 " " Autocomplete/snippets
 Plugin 'Valloric/YouCompleteMe'
@@ -74,8 +74,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'wavded/vim-stylus'
 Plugin 'othree/yajs.vim'
 Plugin 'mxw/vim-jsx'
-" Plugin 'jelera/vim-javascript-syntax'
-" Plugin 'pangloss/vim-javascript'
+"" Plugin 'jelera/vim-javascript-syntax'
+"" Plugin 'pangloss/vim-javascript'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'chase/vim-ansible-yaml'
 
@@ -83,7 +83,7 @@ Plugin 'chase/vim-ansible-yaml'
 Plugin 'tpope/vim-fugitive'
 
 " Text objects
-Plugin 'gcmt/wildfire.vim'
+"Plugin 'gcmt/wildfire.vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-function'
 Plugin 'kana/vim-textobj-indent'
@@ -158,8 +158,6 @@ set background=light					" set light colorscheme
 colorscheme base16-solarized			" use solarized
 set guifont=Ubuntu\ Mono:h20			" set font and size
 set guioptions=egm						" gvim options (no scrollbars, etc)
-" set relativenumber						" show relative numbers
-" set number								" show line numbers
 set nonumber							" disable line numbers
 
 " }}}
