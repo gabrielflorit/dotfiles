@@ -22,11 +22,6 @@ set incsearch							" incremental searching
 set ignorecase							" searches are case insensitive...
 set smartcase							" ... unless they contain at least one capital letter
 
-if executable('ag')
-	set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-    " set grepformat=%f:%l:%c:%m
-endif
-
 " }}}
 " Plugins {{{
 
@@ -38,6 +33,7 @@ Plugin 'gmarik/Vundle.vim'				" let Vundle manage Vundle, required
 " Unite ecosystem
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'rking/ag.vim'
 
 " Appearance/colors/themes
 Plugin 'chriskempson/base16-vim'
@@ -61,7 +57,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 "Plugin 'Raimondi/delimitMate'
 "Plugin 'junegunn/vim-easy-align'
-"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'jcfaria/Vim-R-plugin'
 
 " " Autocomplete/snippets
@@ -103,13 +99,40 @@ let g:user_emmet_settings = {
 " }}}
 " Unite ecosystem {{{
 
-let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S'
-let g:unite_source_grep_recursive_opt=''
+if executable('ag')
+	" Use ag in unite grep source.
+	let g:unite_source_grep_command = 'ag'
+	let g:unite_source_grep_default_opts =
+				\ '-i --vimgrep --hidden --ignore ' .
+				\ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+	let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+	" Use pt in unite grep source.
+	" https://github.com/monochromegane/the_platinum_searcher
+	let g:unite_source_grep_command = 'pt'
+	let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+	let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+	" Use ack in unite grep source.
+	let g:unite_source_grep_command = 'ack-grep'
+	let g:unite_source_grep_default_opts =
+				\ '-i --no-heading --no-color -k -H'
+	let g:unite_source_grep_recursive_opt = ''
+elseif executable('jvgrep')
+	" For jvgrep.
+	let g:unite_source_grep_command = 'jvgrep'
+	let g:unite_source_grep_default_opts =
+				\ '-i --exclude ''\.(git|svn|hg|bzr)'''
+	let g:unite_source_grep_recursive_opt = '-R'
+endif
 
-let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
+" let g:unite_source_grep_command='ag'
+" let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S'
+" let g:unite_source_grep_recursive_opt=''
+
+" let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
 
 " }}}
 " Syntastic {{{
