@@ -7,6 +7,8 @@ Plug 'tpope/vim-sensible'
 
 " color scheme
 Plug 'yosiat/oceanic-next-vim'
+Plug 'bling/vim-bufferline'
+Plug 'bling/vim-airline'
 
 " neomake - asynchronous make
 Plug 'benekastah/neomake'
@@ -17,14 +19,33 @@ Plug 'tpope/vim-commentary'
 " syntax highlighting
 Plug 'pangloss/vim-javascript'
 
+" git
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 
 
-" COLORS
-" -----------------------------------------------
+" APPEARANCE
+" ----------------------------------------------
+
+" color scheme
 colorscheme OceanicNext
 
+" tab settings
+set tabstop=2 shiftwidth=2
+
+" always show statusline
+set laststatus=2
+
+" configure airline
+let g:airline#extensions#default#layout = [
+      \ [ 'a', 'b', 'c' ],
+      \ [ 'z', 'warning' ]
+      \ ]
+
+" use powerline fonts
+let g:airline_powerline_fonts = 1
 
 
 " CODE CHECKING
@@ -34,7 +55,7 @@ colorscheme OceanicNext
 autocmd! BufWritePost * Neomake
 
 " tell Neomake we want to run jscs for javascript files
-let g:neomake_javascript_enabled_makers = ['jscs']
+let g:neomake_javascript_enabled_makers=['jscs']
 
 
 
@@ -42,7 +63,7 @@ let g:neomake_javascript_enabled_makers = ['jscs']
 " -----------------------------------------------
 
 " source vimrc on every write
-autocmd bufwritepost .vimrc source $MYVIMRC
+autocmd bufwritepost .nvimrc source $MYVIMRC
 
 
 

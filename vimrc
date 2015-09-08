@@ -37,6 +37,7 @@ Plugin 'rking/ag.vim'
 
 " Appearance/colors/themes
 Plugin 'chriskempson/base16-vim'
+Plugin 'yosiat/oceanic-next-vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 
@@ -183,8 +184,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}}
 " Appearance {{{
 
-set background=light					" set light colorscheme
-colorscheme base16-solarized			" use solarized
+" set background=dark					" set light colorscheme
+" colorscheme base16-solarized			" use solarized
+colorscheme OceanicNext			" use solarized
 set guifont=Ubuntu\ Mono:h20			" set font and size
 set guioptions=egm						" gvim options (no scrollbars, etc)
 set nonumber							" disable line numbers
