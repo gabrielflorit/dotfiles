@@ -5,7 +5,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 
 " color scheme
-Plug 'chriskempson/base16-vim'
+Plug 'yosiat/oceanic-next-vim'
 
 " neomake - asynchronous make
 Plug 'benekastah/neomake'
@@ -15,8 +15,7 @@ call plug#end()
 
 
 " COLORS
-"set background=dark
-"colorscheme base16-solarized
+colorscheme OceanicNext
 
 
 
