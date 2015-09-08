@@ -9,6 +9,7 @@ Plug 'tpope/vim-sensible'
 Plug 'yosiat/oceanic-next-vim'
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
+" Plug 'itchyny/lightline.vim'
 
 " neomake - asynchronous make
 Plug 'benekastah/neomake'
@@ -17,7 +18,8 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-commentary'
 
 " syntax highlighting
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -38,15 +40,41 @@ set tabstop=2 shiftwidth=2
 " always show statusline
 set laststatus=2
 
-" configure airline
+" let g:airline_theme='base16'
+
+" don't show vim mode, we have lightline for that
+set noshowmode
+
+" let g:airline#extensions#tabline#enabled = 1
+
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline#extensions#default#layout = [
-      \ [ 'a', 'b', 'c' ],
-      \ [ 'z', 'warning' ]
-      \ ]
+	\ [ 'a', 'b', 'c' ],
+	\ [ 'z', 'warning' ]
+	\ ]
 
-" use powerline fonts
-let g:airline_powerline_fonts = 1
-
+" " configure lightline
+" let g:lightline = {
+" 	\ 'colorscheme': 'powerline',
+" 	\ 'active': {
+" 	\ 	'left': [ [ 'mode', 'paste' ],
+" 	\							[ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+" 	\ },
+" 	\ 'component': {
+" 	\		'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}',
+" 	\		'filetype': '',
+" 	\		'fileformat': '',
+" 	\		'fileencoding': ''
+" 	\ },
+" 	\ 'component_visible_condition': {
+" 	\		'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
+" 	\		'filetype': 0,
+" 	\		'fileformat': 0,
+" 	\		'fileencoding': 0,
+" 	\ }
+" 	\
+" 	\ }
 
 " CODE CHECKING
 " -----------------------------------------------
@@ -62,7 +90,12 @@ let g:neomake_javascript_enabled_makers=['jscs']
 " MISC
 " -----------------------------------------------
 
-" source vimrc on every write
+" " source vimrc on every write
+" augroup reload_vimrc
+"     autocmd!
+"     autocmd bufwritepost $MYVIMRC nested source $MYVIMRC 
+" augroup END
+
 autocmd bufwritepost .nvimrc source $MYVIMRC
 
 
@@ -81,6 +114,12 @@ nnoremap <leader>w :w<CR>
 
 " ,n -> toggle netrw
 nnoremap <leader>n :Explore<CR>
+
+" tab -> next buffer
+nnoremap <Tab> :bnext<CR>
+
+" shift-tab -> previous buffer
+nnoremap <S-Tab> :bprevious<CR>
 
 " F7 -> syntax off / syntax enable
 :map <F7> :if exists("g:syntax_on") <Bar>
