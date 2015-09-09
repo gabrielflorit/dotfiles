@@ -57,12 +57,12 @@ let s:N6   = [s:base00, s:base03, 0, 0]
 let g:airline#themes#oceanicnext#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3, s:N4, s:N5, s:N6)
 let g:airline#themes#oceanicnext#palette.normal.airline_warning = [s:base09, s:base00, 0, 0]
 
-let s:I1   = [s:base00, s:base0B, 0, 0]
+let s:I1   = [s:base00, s:base0A, 0, 0]
 let s:I2   = [s:base00, s:base03, 0, 0]
 let s:I3   = [s:base03, s:base00, 0, 0]
 let s:I4   = [s:base00, s:base08, 0, 0]
 let s:I5   = [s:base00, s:base08, 0, 0]
-let s:I6   = [s:base00, s:base0B, 0, 0]
+let s:I6   = [s:base00, s:base0A, 0, 0]
 let g:airline#themes#oceanicnext#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3, s:I4, s:I5, s:I6)
 let g:airline#themes#oceanicnext#palette.insert.airline_warning = [s:base09, s:base00, 0, 0]
 

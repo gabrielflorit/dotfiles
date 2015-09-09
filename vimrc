@@ -184,7 +184,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}}
 " Appearance {{{
 
-" set background=dark					" set light colorscheme
+set background=dark					" set light colorscheme
 colorscheme base16-solarized			" use solarized
 " colorscheme OceanicNext			" use solarized
 set guifont=Ubuntu\ Mono:h20			" set font and size
@@ -202,6 +202,7 @@ endif
 " Statusline {{{
 
 set laststatus=2						" always show statusline
+let g:airline_theme='solarized'
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'z', 'warning' ]

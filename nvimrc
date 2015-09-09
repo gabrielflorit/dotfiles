@@ -2,31 +2,53 @@
 " -----------------------------------------------
 call plug#begin()
 
+" MISCELLANEOUS
+" ------------------------
 " normalize.css for vim
 Plug 'tpope/vim-sensible'
+" neomake - asynchronous make
+Plug 'benekastah/neomake'
+" git
+Plug 'tpope/vim-fugitive'
+" buffer closing utility
+Plug 'moll/vim-bbye'
 
+
+
+" APPEARANCE
+" ------------------------
 " color scheme
 Plug 'yosiat/oceanic-next-vim'
-
 " status line
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
 
-" neomake - asynchronous make
-Plug 'benekastah/neomake'
 
-" comment/uncomment motion
+
+" EDITING
+" ------------------------
+" comment/uncomment
 Plug 'tpope/vim-commentary'
+" surround
+Plug 'tpope/vim-surround'
 
-" syntax highlighting
+
+
+" SEARCH
+" ------------------------
+" better asterisk search
+Plug 'haya14busa/vim-asterisk'
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
+
+
+
+" SYNTAX HIGHLIGHTING
+" ------------------------
 " Plug 'pangloss/vim-javascript'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'othree/yajs.vim'
-
-" git
-Plug 'tpope/vim-fugitive'
-
-" buffer closing utility
-Plug 'moll/vim-bbye'
 
 call plug#end()
 
@@ -93,6 +115,19 @@ autocmd bufwritepost .nvimrc source $MYVIMRC
 
 
 
+" SEARCH
+" -----------------------------------------------
+
+" configure vim-asterisk
+map *  <Plug>(asterisk-z*)
+map #  <Plug>(asterisk-z#)
+map g* <Plug>(asterisk-gz*)
+map g# <Plug>(asterisk-gz#)
+
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
+
+
 " REMAPS
 " -----------------------------------------------
 
@@ -123,3 +158,15 @@ nnoremap <leader>q :Bdelete<CR>
 	\ else <Bar>
 	\   syntax enable <Bar>
 	\ endif <CR>
+
+" esc -> clear search highlight
+nnoremap <silent> <esc> :noh<cr><esc>
+
+" git add and commit file
+nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+
+" ,, -> search filenames
+nnoremap <leader><leader> :FZF<CR>
+
+" ,f -> search files with given string
+nnoremap <leader>f :Ag<CR>
