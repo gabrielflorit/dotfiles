@@ -165,8 +165,8 @@ nnoremap <silent> <esc> :noh<cr><esc>
 " git add and commit file
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 
-" ,, -> search filenames
-nnoremap <leader><leader> :FZF<CR>
+" " ,, -> search filenames
+" nnoremap <leader><leader> :FZF<CR>
 
-" ,f -> search files with given string
-nnoremap <leader>f :Ag<CR>
+" " ,f -> search files with given string
+" nnoremap <leader>f :Ag<CR>
