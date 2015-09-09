@@ -7,6 +7,8 @@ Plug 'tpope/vim-sensible'
 
 " color scheme
 Plug 'yosiat/oceanic-next-vim'
+
+" status line
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
 " Plug 'itchyny/lightline.vim'
@@ -24,6 +26,9 @@ Plug 'othree/yajs.vim'
 " git
 Plug 'tpope/vim-fugitive'
 
+" buffer closing utility
+Plug 'moll/vim-bbye'
+
 call plug#end()
 
 
@@ -40,13 +45,14 @@ set tabstop=2 shiftwidth=2
 " always show statusline
 set laststatus=2
 
-" let g:airline_theme='base16'
-
-" don't show vim mode, we have lightline for that
+" don't show vim mode
 set noshowmode
 
-" let g:airline#extensions#tabline#enabled = 1
+let g:bufferline_echo = 0
+let g:bufferline_show_bufnr = 0
 
+let g:airline_powerline_fonts = 1
+let g:airline_theme='oceanicnext'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline#extensions#default#layout = [
@@ -120,6 +126,9 @@ nnoremap <Tab> :bnext<CR>
 
 " shift-tab -> previous buffer
 nnoremap <S-Tab> :bprevious<CR>
+
+" close buffer without closing window
+nnoremap <leader>q :Bdelete<CR>
 
 " F7 -> syntax off / syntax enable
 :map <F7> :if exists("g:syntax_on") <Bar>
