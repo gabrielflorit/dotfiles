@@ -11,7 +11,6 @@ Plug 'yosiat/oceanic-next-vim'
 " status line
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
-" Plug 'itchyny/lightline.vim'
 
 " neomake - asynchronous make
 Plug 'benekastah/neomake'
@@ -36,7 +35,10 @@ call plug#end()
 " APPEARANCE
 " ----------------------------------------------
 
-" color scheme
+" change cursor shape to pipe on insert mode
+:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" main color scheme
 colorscheme OceanicNext
 
 " tab settings
@@ -48,39 +50,29 @@ set laststatus=2
 " don't show vim mode
 set noshowmode
 
+" don't echo bufferline to statusline
 let g:bufferline_echo = 0
+
+" don't show buffer numbers in bufferline
 let g:bufferline_show_bufnr = 0
 
+" use patched powerline fonts in statusline
 let g:airline_powerline_fonts = 1
+
+" specify statusline colorscheme
 let g:airline_theme='oceanicnext'
+
+" disable statusline block separators
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+
+" customize what blocks we show in statusline
 let g:airline#extensions#default#layout = [
 	\ [ 'a', 'b', 'c' ],
 	\ [ 'z', 'warning' ]
 	\ ]
 
-" " configure lightline
-" let g:lightline = {
-" 	\ 'colorscheme': 'powerline',
-" 	\ 'active': {
-" 	\ 	'left': [ [ 'mode', 'paste' ],
-" 	\							[ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-" 	\ },
-" 	\ 'component': {
-" 	\		'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}',
-" 	\		'filetype': '',
-" 	\		'fileformat': '',
-" 	\		'fileencoding': ''
-" 	\ },
-" 	\ 'component_visible_condition': {
-" 	\		'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
-" 	\		'filetype': 0,
-" 	\		'fileformat': 0,
-" 	\		'fileencoding': 0,
-" 	\ }
-" 	\
-" 	\ }
+
 
 " CODE CHECKING
 " -----------------------------------------------
@@ -96,12 +88,7 @@ let g:neomake_javascript_enabled_makers=['jscs']
 " MISC
 " -----------------------------------------------
 
-" " source vimrc on every write
-" augroup reload_vimrc
-"     autocmd!
-"     autocmd bufwritepost $MYVIMRC nested source $MYVIMRC 
-" augroup END
-
+" source vimrc on every write
 autocmd bufwritepost .nvimrc source $MYVIMRC
 
 

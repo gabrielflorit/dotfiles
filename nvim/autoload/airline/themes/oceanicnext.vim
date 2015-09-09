@@ -17,6 +17,25 @@
 " then they will need to change different parts of the statusline so they do
 " not conflict with each other.
 "
+
+let s:base00 = '#1B2B34'
+let s:base01 = '#343D46'
+let s:base02 = '#4F5B66'
+let s:base03 = '#65737E'
+let s:base04 = '#A7ADBA'
+let s:base05 = '#C0C5CE'
+let s:base06 = '#CDD3DE'
+let s:base07 = '#D8DEE9'
+let s:base08 = '#EC5f67'
+let s:base09 = '#F99157'
+let s:base0A = '#FAC863'
+let s:base0B = '#99C794'
+let s:base0C = '#5FB3B3'
+let s:base0D = '#6699CC'
+let s:base0E = '#C594C5'
+let s:base0F = '#AB7967'
+
+"
 " First, let's define an empty dictionary and assign it to the "palette"
 " variable. The # is a separator that maps with the directory structure. If
 " you get this wrong, Vim will complain loudly.
@@ -28,75 +47,113 @@ let g:airline#themes#oceanicnext#palette = {}
 " to the dictionary.  The array is in the format:
 " [ guifg, guibg, ctermfg, ctermbg, opts ]. See "help attr-list" for valid
 " values for the "opt" value.
-let s:N1   = [ '#1B2B34' , '#D8DEE9' , 0  , 0 ]
-let s:N2   = [ '#1B2B34' , '#65737E' , 0  , 0 ]
-let s:N3   = [ '#65737E' , '#1B2B34' , 0  , 0 ]
-let g:airline#themes#oceanicnext#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 
-" Here we define overrides for when the buffer is modified.  This will be
-" applied after g:airline#themes#oceanicnext#palette.normal, hence why only certain keys are
-" declared.
-let g:airline#themes#oceanicnext#palette.normal_modified = {
-      \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
-      \ }
+let s:N1   = [s:base00, s:base07, 0, 0]
+let s:N2   = [s:base00, s:base03, 0, 0]
+let s:N3   = [s:base03, s:base00, 0, 0]
+let s:N4   = [s:base00, s:base08, 0, 0]
+let s:N5   = [s:base00, s:base08, 0, 0]
+let s:N6   = [s:base00, s:base03, 0, 0]
+let g:airline#themes#oceanicnext#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3, s:N4, s:N5, s:N6)
+let g:airline#themes#oceanicnext#palette.normal.airline_warning = [s:base09, s:base00, 0, 0]
 
+let s:I1   = [s:base00, s:base0B, 0, 0]
+let s:I2   = [s:base00, s:base03, 0, 0]
+let s:I3   = [s:base03, s:base00, 0, 0]
+let s:I4   = [s:base00, s:base08, 0, 0]
+let s:I5   = [s:base00, s:base08, 0, 0]
+let s:I6   = [s:base00, s:base0B, 0, 0]
+let g:airline#themes#oceanicnext#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3, s:I4, s:I5, s:I6)
+let g:airline#themes#oceanicnext#palette.insert.airline_warning = [s:base09, s:base00, 0, 0]
 
-let s:I1 = [ '#00005f' , '#00dfff' , 17  , 45  ]
-let s:I2 = [ '#ffffff' , '#005fff' , 255 , 27  ]
-let s:I3 = [ '#ffffff' , '#000080' , 15  , 17  ]
-let g:airline#themes#oceanicnext#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
-let g:airline#themes#oceanicnext#palette.insert_modified = {
-      \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
-      \ }
-let g:airline#themes#oceanicnext#palette.insert_paste = {
-      \ 'airline_a': [ s:I1[0]   , '#d78700' , s:I1[2] , 172     , ''     ] ,
-      \ }
+let s:V1   = [s:base00, s:base09, 0, 0]
+let s:V2   = [s:base00, s:base03, 0, 0]
+let s:V3   = [s:base03, s:base00, 0, 0]
+let s:V4   = [s:base00, s:base08, 0, 0]
+let s:V5   = [s:base00, s:base08, 0, 0]
+let s:V6   = [s:base00, s:base09, 0, 0]
+let g:airline#themes#oceanicnext#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3, s:V4, s:V5, s:V6)
+let g:airline#themes#oceanicnext#palette.visual.airline_warning = [s:base09, s:base00, 0, 0]
 
-
-let g:airline#themes#oceanicnext#palette.replace = copy(g:airline#themes#oceanicnext#palette.insert)
-let g:airline#themes#oceanicnext#palette.replace.airline_a = [ s:I2[0]   , '#af0000' , s:I2[2] , 124     , ''     ]
-let g:airline#themes#oceanicnext#palette.replace_modified = g:airline#themes#oceanicnext#palette.insert_modified
-
-
-let s:V1 = [ '#000000' , '#ffaf00' , 232 , 214 ]
-let s:V2 = [ '#000000' , '#ff5f00' , 232 , 202 ]
-let s:V3 = [ '#ffffff' , '#5f0000' , 15  , 52  ]
-let g:airline#themes#oceanicnext#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
-let g:airline#themes#oceanicnext#palette.visual_modified = {
-      \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
-      \ }
+" " Here we define overrides for when the buffer is modified.  This will be
+" " applied after g:airline#themes#oceanicnext#palette.normal, hence why only certain keys are
+" " declared.
+" let g:airline#themes#oceanicnext#palette.normal_modified = {
+"       \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
+"       \ }
 
 
-let s:IA1 = [ '#4e4e4e' , '#1c1c1c' , 239 , 234 , '' ]
-let s:IA2 = [ '#4e4e4e' , '#262626' , 239 , 235 , '' ]
-let s:IA3 = [ '#4e4e4e' , '#303030' , 239 , 236 , '' ]
-let g:airline#themes#oceanicnext#palette.inactive = airline#themes#generate_color_map(s:IA1, s:IA2, s:IA3)
-let g:airline#themes#oceanicnext#palette.inactive_modified = {
-      \ 'airline_c': [ '#875faf' , '' , 97 , '' , '' ] ,
-      \ }
+" let s:I1 = [ '#1B2B34' , '#EC5f67' , 0, 0 ]
+" let s:I2 = [ '#ffffff' , '#005fff' , 0, 0 ]
+" let s:I3 = [ '#ffffff' , '#6699CC' , 0, 0 ]
+" let g:airline#themes#oceanicnext#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
+" let g:airline#themes#oceanicnext#palette.insert.airline_warning = [ '#1B2B34', '#EC5f67', 0, 0 ]
+" " let g:airline#themes#oceanicnext#palette.insert_modified = {
+" "       \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
+" "       \ }
+" " let g:airline#themes#oceanicnext#palette.insert_paste = {
+" "       \ 'airline_a': [ s:I1[0]   , '#d78700' , s:I1[2] , 172     , ''     ] ,
+" "       \ }
 
 
-" Accents are used to give parts within a section a slightly different look or
-" color. Here we are defining a "red" accent, which is used by the 'readonly'
-" part by default. Only the foreground colors are specified, so the background
-" colors are automatically extracted from the underlying section colors. What
-" this means is that regardless of which section the part is defined in, it
-" will be red instead of the section's foreground color. You can also have
-" multiple parts with accents within a section.
-let g:airline#themes#oceanicnext#palette.accents = {
-      \ 'red': [ '#ff0000' , '' , 160 , ''  ]
-      \ }
+" let s:I1 = [ '#FF0000' , '#00FF00' , 0, 0 ]
+" let s:I2 = [ '#ffffff' , '#005fff' , 0, 0 ]
+" let s:I3 = [ '#ffffff' , '#000080' , 0, 0 ]
+" let g:airline#themes#oceanicnext#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
+
+" let g:airline#themes#oceanicnext#palette.insert_modified = {
+"       \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
+"       \ }
+" let g:airline#themes#oceanicnext#palette.insert_paste = {
+"       \ 'airline_a': [ s:I1[0]   , '#d78700' , s:I1[2] , 172     , ''     ] ,
+"       \ }
 
 
-" Here we define the color map for ctrlp.  We check for the g:loaded_ctrlp
-" variable so that related functionality is loaded iff the user is using
-" ctrlp. Note that this is optional, and if you do not define ctrlp colors
-" they will be chosen automatically from the existing palette.
-if !get(g:, 'loaded_ctrlp', 0)
-  finish
-endif
-let g:airline#themes#oceanicnext#palette.ctrlp = airline#extensions#ctrlp#generate_color_map(
-      \ [ '#d7d7ff' , '#5f00af' , 189 , 55  , ''     ],
-      \ [ '#ffffff' , '#875fd7' , 231 , 98  , ''     ],
-      \ [ '#5f00af' , '#ffffff' , 55  , 231 , 'bold' ])
+" let g:airline#themes#oceanicnext#palette.replace = copy(g:airline#themes#oceanicnext#palette.insert)
+" let g:airline#themes#oceanicnext#palette.replace.airline_a = [ s:I2[0]   , '#af0000' , s:I2[2] , 124     , ''     ]
+" let g:airline#themes#oceanicnext#palette.replace_modified = g:airline#themes#oceanicnext#palette.insert_modified
+
+
+" let s:V1 = [ '#000000' , '#ffaf00' , 232 , 214 ]
+" let s:V2 = [ '#000000' , '#ff5f00' , 232 , 202 ]
+" let s:V3 = [ '#ffffff' , '#5f0000' , 15  , 52  ]
+" let g:airline#themes#oceanicnext#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
+" let g:airline#themes#oceanicnext#palette.visual_modified = {
+"       \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
+"       \ }
+
+
+" let s:IA1 = [ '#4e4e4e' , '#1c1c1c' , 239 , 234 , '' ]
+" let s:IA2 = [ '#4e4e4e' , '#262626' , 239 , 235 , '' ]
+" let s:IA3 = [ '#4e4e4e' , '#303030' , 239 , 236 , '' ]
+" let g:airline#themes#oceanicnext#palette.inactive = airline#themes#generate_color_map(s:IA1, s:IA2, s:IA3)
+" let g:airline#themes#oceanicnext#palette.inactive_modified = {
+"       \ 'airline_c': [ '#875faf' , '' , 97 , '' , '' ] ,
+"       \ }
+
+
+" " Accents are used to give parts within a section a slightly different look or
+" " color. Here we are defining a "red" accent, which is used by the 'readonly'
+" " part by default. Only the foreground colors are specified, so the background
+" " colors are automatically extracted from the underlying section colors. What
+" " this means is that regardless of which section the part is defined in, it
+" " will be red instead of the section's foreground color. You can also have
+" " multiple parts with accents within a section.
+" let g:airline#themes#oceanicnext#palette.accents = {
+"       \ 'red': 		[ '#ff0000' , '' , 160 , ''  ],
+"       \ 'orange': [ '#ff0000' , '' , 0 , ''  ]
+"       \ }
+
+
+" " Here we define the color map for ctrlp.  We check for the g:loaded_ctrlp
+" " variable so that related functionality is loaded iff the user is using
+" " ctrlp. Note that this is optional, and if you do not define ctrlp colors
+" " they will be chosen automatically from the existing palette.
+" if !get(g:, 'loaded_ctrlp', 0)
+"   finish
+" endif
+" let g:airline#themes#oceanicnext#palette.ctrlp = airline#extensions#ctrlp#generate_color_map(
+"       \ [ '#d7d7ff' , '#5f00af' , 189 , 55  , ''     ],
+"       \ [ '#ffffff' , '#875fd7' , 231 , 98  , ''     ],
+"       \ [ '#5f00af' , '#ffffff' , 55  , 231 , 'bold' ])
 

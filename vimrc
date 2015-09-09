@@ -185,8 +185,8 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Appearance {{{
 
 " set background=dark					" set light colorscheme
-" colorscheme base16-solarized			" use solarized
-colorscheme OceanicNext			" use solarized
+colorscheme base16-solarized			" use solarized
+" colorscheme OceanicNext			" use solarized
 set guifont=Ubuntu\ Mono:h20			" set font and size
 set guioptions=egm						" gvim options (no scrollbars, etc)
 set nonumber							" disable line numbers
