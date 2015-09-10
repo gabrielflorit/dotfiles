@@ -48,6 +48,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'othree/yajs.vim'
 
+Plug 'wavded/vim-stylus'
+
 call plug#end()
 
 
