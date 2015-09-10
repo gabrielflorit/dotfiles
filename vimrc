@@ -16,10 +16,9 @@ Plug 'moll/vim-bbye'
 " APPEARANCE
 " ------------------------
 " color scheme
-Plug 'yosiat/oceanic-next-vim'
 Plug 'chriskempson/base16-vim'
-" " status line
-" Plug 'bling/vim-bufferline'
+" status line
+Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
 
 
@@ -60,7 +59,7 @@ call plug#end()
 set background=dark
 
 " colorscheme OceanicNext
-colorscheme base16-default
+colorscheme base16-oceanicnext
 
 " tab settings
 set tabstop=2 shiftwidth=2
@@ -71,11 +70,11 @@ set laststatus=2
 " don't show vim mode
 set noshowmode
 
-" " don't echo bufferline to statusline
-" let g:bufferline_echo = 0
+" don't echo bufferline to statusline
+let g:bufferline_echo = 0
 
-" " don't show buffer numbers in bufferline
-" let g:bufferline_show_bufnr = 0
+" don't show buffer numbers in bufferline
+let g:bufferline_show_bufnr = 0
 
 " use patched powerline fonts in statusline
 let g:airline_powerline_fonts = 1
@@ -93,23 +92,29 @@ let g:airline#extensions#default#layout = [
 	\ [ 'z', 'warning' ]
 	\ ]
 
+" highlight search results
+set hlsearch
 
 
-" " CODE CHECKING
+
+" " " CODE CHECKING
+" " " -----------------------------------------------
+
+
+
+" " MISC
 " " -----------------------------------------------
 
-
-
-" MISC
-" -----------------------------------------------
+" enable mouse
+set mouse=a
 
 " source vimrc on every write
 autocmd bufwritepost .vimrc source $MYVIMRC
 
 
 
-" " SEARCH
-" " -----------------------------------------------
+" SEARCH
+" -----------------------------------------------
 
 " configure vim-asterisk
 map *  <Plug>(asterisk-z*)
@@ -117,6 +122,7 @@ map #  <Plug>(asterisk-z#)
 map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz#)
 
+" tell fzf to use ag. it will respect .gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 
@@ -146,7 +152,7 @@ nnoremap <S-Tab> :bprevious<CR>
 nnoremap <leader>q :Bdelete<CR>
 
 " esc -> clear search highlight
-nnoremap <silent> <esc> :noh<cr><esc>
+nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
 " git add and commit file
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
