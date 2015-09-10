@@ -19,6 +19,7 @@ Plug 'moll/vim-bbye'
 " ------------------------
 " color scheme
 Plug 'yosiat/oceanic-next-vim'
+Plug 'chriskempson/base16-vim'
 " status line
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
@@ -60,8 +61,10 @@ call plug#end()
 " change cursor shape to pipe on insert mode
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+set background=dark
+
 " main color scheme
-colorscheme OceanicNext
+colorscheme base16-default
 
 " tab settings
 set tabstop=2 shiftwidth=2
@@ -82,7 +85,7 @@ let g:bufferline_show_bufnr = 0
 let g:airline_powerline_fonts = 1
 
 " specify statusline colorscheme
-let g:airline_theme='oceanicnext'
+let g:airline_theme='base16'
 
 " disable statusline block separators
 let g:airline_left_sep=''
@@ -165,8 +168,8 @@ nnoremap <silent> <esc> :noh<cr><esc>
 " git add and commit file
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 
-" " ,, -> search filenames
-" nnoremap <leader><leader> :FZF<CR>
+" ,, -> search filenames
+nnoremap <leader><leader> :FZF<CR>
 
-" " ,f -> search files with given string
-" nnoremap <leader>f :Ag<CR>
+" ,f -> search files with given string
+nnoremap <leader>f :Ag<CR>
