@@ -10,6 +10,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 " buffer closing utility
 Plug 'moll/vim-bbye'
+Plug 'takac/vim-hardtime'
 
 
 
@@ -112,6 +113,9 @@ set hlsearch
 
 " " MISC
 " " -----------------------------------------------
+
+" enable hardtime
+let g:hardtime_default_on = 1
 
 " enable mouse
 set mouse=a
