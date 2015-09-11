@@ -40,6 +40,7 @@ Plug 'haya14busa/vim-asterisk'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
+Plug 'unblevable/quick-scope'
 
 
 
