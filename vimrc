@@ -52,6 +52,15 @@ Plug 'othree/yajs.vim'
 
 Plug 'wavded/vim-stylus'
 
+
+
+" TEXT OBJECTS
+" ------------------------
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+
+
+
 call plug#end()
 
 
