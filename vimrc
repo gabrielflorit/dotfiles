@@ -2,6 +2,8 @@
 " -----------------------------------------------
 call plug#begin()
 
+Plug 'gabrielflorit/js-syntax-vim'
+
 " MISCELLANEOUS
 " ------------------------
 " normalize.css for vim
@@ -30,6 +32,8 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 " surround
 Plug 'tpope/vim-surround'
+" easy align
+Plug 'junegunn/vim-easy-align'
 
 
 
@@ -48,6 +52,7 @@ Plug 'unblevable/quick-scope'
 " ------------------------
 " Plug 'pangloss/vim-javascript'
 Plug 'mustache/vim-mustache-handlebars'
+
 Plug 'othree/yajs.vim'
 
 Plug 'wavded/vim-stylus'
@@ -133,6 +138,15 @@ set mouse=a
 " source vimrc on every write
 autocmd bufwritepost .vimrc source $MYVIMRC
 
+" use ctrl-[hjkl] to select the active split
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" allow quit via single keypress (Q)
+map Q :qa<CR>
+
 
 
 " SEARCH
@@ -170,13 +184,13 @@ nnoremap <Tab> :bnext<CR>
 " shift-tab -> previous buffer
 nnoremap <S-Tab> :bprevious<CR>
 
-" close buffer without closing window
+" ,q -> close buffer without closing window
 nnoremap <leader>q :Bdelete<CR>
 
-" esc -> clear search highlight
+" esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
-" git add and commit file
+" ,gt -> git add and commit file
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 
 " ,, -> search filenames
@@ -184,3 +198,6 @@ nnoremap <leader><leader> :FZF<CR>
 
 " ,f -> search files with given string
 nnoremap <leader>f :Ag<CR>
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
