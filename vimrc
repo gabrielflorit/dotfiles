@@ -23,6 +23,7 @@ Plug 'chriskempson/base16-vim'
 " status line
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
+Plug 'ntpeters/vim-better-whitespace'
 
 
 
@@ -34,6 +35,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 " easy align
 Plug 'junegunn/vim-easy-align'
+" auto close xml tags
+Plug 'alvan/vim-closetag'
 
 
 
@@ -52,9 +55,7 @@ Plug 'unblevable/quick-scope'
 " ------------------------
 " Plug 'pangloss/vim-javascript'
 Plug 'mustache/vim-mustache-handlebars'
-
 Plug 'othree/yajs.vim'
-
 Plug 'wavded/vim-stylus'
 
 
@@ -63,6 +64,12 @@ Plug 'wavded/vim-stylus'
 " ------------------------
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
+
+
+
+" AUTOCOMPLETION
+" ------------------------
+Plug 'Valloric/YouCompleteMe'
 
 
 
@@ -121,13 +128,22 @@ set hlsearch
 
 
 
-" " " CODE CHECKING
-" " " -----------------------------------------------
+" EDITING
+" -----------------------------------------------
+
+" enable autoclose tag on xml files
+let g:closetag_filenames = "*.html,*.hbs"
+
+" enable mustache abbreviations
+let g:mustache_abbreviations = 1
+
+" enable matchit
+runtime macros/matchit.vim
 
 
 
-" " MISC
-" " -----------------------------------------------
+" MISC
+" -----------------------------------------------
 
 " enable hardtime
 let g:hardtime_default_on = 1
@@ -160,6 +176,11 @@ map g# <Plug>(asterisk-gz#)
 
 " tell fzf to use ag. it will respect .gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
+
+
+" AUTOCOMPLETION
+" -----------------------------------------------
 
 
 
