@@ -37,6 +37,8 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 " auto close xml tags
 Plug 'alvan/vim-closetag'
+" auto insert or delete brackets, parens, quotes in pair
+Plug 'jiangmiao/auto-pairs'
 
 
 
