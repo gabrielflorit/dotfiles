@@ -224,3 +224,6 @@ nnoremap <leader>f :Ag<CR>
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Y -> yank from cursor to end of line
+map Y y$
