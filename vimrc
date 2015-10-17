@@ -55,9 +55,10 @@ Plug 'unblevable/quick-scope'
 
 " SYNTAX HIGHLIGHTING
 " ------------------------
-" Plug 'pangloss/vim-javascript'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
+" Plug 'othree/yajs.vim'
+Plug 'mxw/vim-jsx'
 Plug 'wavded/vim-stylus'
 
 
@@ -89,10 +90,12 @@ let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " main color scheme
+" set background=light
 set background=dark
 
 " colorscheme OceanicNext
 colorscheme base16-oceanicnext
+" colorscheme base16-default
 
 " tab settings
 set tabstop=2 shiftwidth=2
@@ -181,8 +184,9 @@ let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 
 
-" AUTOCOMPLETION
+" SYNTAX HIGHLIGHTING
 " -----------------------------------------------
+let g:jsx_ext_required=0
 
 
 
