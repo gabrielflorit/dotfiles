@@ -39,7 +39,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
 " auto insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
-
+" enable repeating
+Plug 'tpope/vim-repeat'
 
 
 " SEARCH
@@ -50,6 +51,7 @@ Plug 'haya14busa/vim-asterisk'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
 Plug 'unblevable/quick-scope'
+Plug 'osyo-manga/vim-over'
 
 
 
