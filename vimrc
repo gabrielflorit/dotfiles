@@ -41,6 +41,8 @@ Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
 " enable repeating
 Plug 'tpope/vim-repeat'
+" complementary pairs
+Plug 'tpope/vim-unimpaired'
 
 
 " SEARCH
@@ -271,3 +273,6 @@ nmap ga <Plug>(EasyAlign)
 
 " Y -> yank from cursor to end of line
 map Y y$
+
+" ,e -> UltiSnipsEdit
+nnoremap <leader>e :UltiSnipsEdit<CR>

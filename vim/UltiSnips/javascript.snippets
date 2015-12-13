@@ -1,3 +1,10 @@
+snippet exfu "export function" b
+export function $1($2) {
+	$3
+}
+$4
+endsnippet
+
 snippet recl "React Class" b
 import React, { Component } from 'react';
 
@@ -7,9 +14,22 @@ export default class ${1:MyClass} extends Component {
 
 		return (
 			<div className='$1'>
+				$1
 			</div>
 		);
 
 	}
 }
+endsnippet
+
+snippet im "import module" b
+import ${1:module} from '$1';
+endsnippet
+
+snippet cl "console log" b
+console.log($1);
+endsnippet
+
+snippet de "debugger" b
+debugger;
 endsnippet
