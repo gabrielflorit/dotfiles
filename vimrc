@@ -38,11 +38,13 @@ Plug 'junegunn/vim-easy-align'
 " auto close xml tags
 Plug 'alvan/vim-closetag'
 " auto insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs'
+Plug 'rstacruz/vim-closer'
 " enable repeating
 Plug 'tpope/vim-repeat'
 " complementary pairs
 Plug 'tpope/vim-unimpaired'
+" autocomplete css
+Plug 'gabrielflorit/vim-hyperstyle'
 
 
 " SEARCH
@@ -147,6 +149,8 @@ let g:mustache_abbreviations = 1
 
 " enable matchit
 runtime macros/matchit.vim
+
+let g:hyperstyle_use_colon = 0
 
 
 
