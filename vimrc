@@ -12,6 +12,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 " buffer closing utility
 Plug 'moll/vim-bbye'
+" disable arrow keys, disable key spamming
 Plug 'takac/vim-hardtime'
 
 
@@ -20,9 +21,11 @@ Plug 'takac/vim-hardtime'
 " ------------------------
 " color scheme
 Plug 'chriskempson/base16-vim'
-" status line
+" show list of buffers in command line
 Plug 'bling/vim-bufferline'
+" status line
 Plug 'bling/vim-airline'
+" show trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
 
 
@@ -54,7 +57,9 @@ Plug 'haya14busa/vim-asterisk'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
+" TODO
 Plug 'unblevable/quick-scope'
+" TODO
 Plug 'osyo-manga/vim-over'
 
 
@@ -78,6 +83,7 @@ Plug 'kana/vim-textobj-indent'
 
 " AUTOCOMPLETION
 " ------------------------
+Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 
@@ -150,6 +156,7 @@ let g:mustache_abbreviations = 1
 " enable matchit
 runtime macros/matchit.vim
 
+" tell hyperstyle to not insert colons
 let g:hyperstyle_use_colon = 0
 
 
@@ -199,40 +206,16 @@ let g:jsx_ext_required=0
 
 " AUTOCOMPLETION
 " -----------------------------------------------
-let g:UltiSnipsExpandTrigger       ="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" Enable tabbing through list of results
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType    = '<C-n>'
 
-au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-
-" Expand snippet or return
-let g:ulti_expand_res = 0
-function! Ulti_ExpandOrEnter()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res
-        return ''
-    else
-        return "\<return>"
-endfunction
-
-" Set <space> as primary trigger
-inoremap <return> <C-R>=Ulti_ExpandOrEnter()<CR>
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger       = '<tab>'
+let g:UltiSnipsJumpForwardTrigger  = '<Right>'
+let g:UltiSnipsJumpBackwardTrigger = '<Left>'
 
 
 
