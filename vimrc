@@ -57,9 +57,9 @@ Plug 'haya14busa/vim-asterisk'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
-" TODO
+" highlight which characters to target for f, F and family
 Plug 'unblevable/quick-scope'
-" TODO
+" highlight searches in command line window
 Plug 'osyo-manga/vim-over'
 
 
