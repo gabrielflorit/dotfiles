@@ -263,3 +263,6 @@ map Y y$
 
 " ,e -> UltiSnipsEdit
 nnoremap <leader>e :UltiSnipsEdit<CR>
+
+" ,s -> highlight search and replace matches
+nnoremap <leader>s :OverCommandLine<CR>%s//gc<Left><Left><Left>
