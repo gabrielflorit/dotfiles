@@ -14,6 +14,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'moll/vim-bbye'
 " disable arrow keys, disable key spamming
 Plug 'takac/vim-hardtime'
+" file system explorer
+Plug 'jeetsukumaran/vim-filebeagle'
 
 
 
@@ -166,6 +168,7 @@ let g:hyperstyle_use_colon = 0
 
 " enable hardtime
 let g:hardtime_default_on = 1
+let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 " enable mouse
 set mouse=a
@@ -230,9 +233,6 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " ,w -> save
 nnoremap <leader>w :w<CR>
-
-" ,n -> toggle netrw
-nnoremap <leader>n :Explore<CR>
 
 " tab -> next buffer
 nnoremap <Tab> :bnext<CR>
