@@ -15,7 +15,7 @@ Plug 'moll/vim-bbye'
 " disable arrow keys, disable key spamming
 Plug 'takac/vim-hardtime'
 " file system explorer
-Plug 'jeetsukumaran/vim-filebeagle'
+Plug 'tpope/vim-vinegar'
 
 
 
@@ -48,8 +48,8 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-repeat'
 " complementary pairs
 Plug 'tpope/vim-unimpaired'
-" autocomplete css
-Plug 'gabrielflorit/vim-hyperstyle'
+" autoformat
+Plug 'Chiel92/vim-autoformat'
 
 
 " SEARCH
@@ -158,9 +158,6 @@ let g:mustache_abbreviations = 1
 " enable matchit
 runtime macros/matchit.vim
 
-" tell hyperstyle to not insert colons
-let g:hyperstyle_use_colon = 0
-
 
 
 " MISC
@@ -169,6 +166,7 @@ let g:hyperstyle_use_colon = 0
 " enable hardtime
 let g:hardtime_default_on = 1
 let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+" let g:hardtime_ignore_buffer_patterns = ["netrw"]
 
 " enable mouse
 set mouse=a
