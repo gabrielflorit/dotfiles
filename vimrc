@@ -73,6 +73,8 @@ Plug 'pangloss/vim-javascript'
 " Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'wavded/vim-stylus'
+" Plug 'lambdatoast/elm.vim'
+Plug 'ElmCast/elm-vim'
 
 
 
@@ -218,6 +220,18 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<Right>'
 let g:UltiSnipsJumpBackwardTrigger = '<Left>'
 
+let g:elm_make_output_file = 'index.html'
+let g:elm_make_show_warnings = 1
+
+au FileType elm nmap <leader>b <Plug>(elm-make)
+" au FileType elm nmap <leader>m <Plug>(elm-make-main)
+" au FileType elm nmap <leader>t <Plug>(elm-test)
+" au FileType elm nmap <leader>r <Plug>(elm-repl)
+au FileType elm nmap <leader>e <Plug>(elm-error-detail)
+" au FileType elm nmap <leader>d <Plug>(elm-show-docs)
+" au FileType elm nmap <leader>w <Plug>(elm-browse-docs)
+
+:au BufWritePost *.elm ElmMake
 
 
 " REMAPS
