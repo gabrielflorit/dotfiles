@@ -283,7 +283,7 @@ map Y y$
 nnoremap <leader>e :UltiSnipsEdit<CR>
 
 " ,r -> highlight search and replace matches
-nnoremap <leader>s :OverCommandLine<CR>%s//gc<Left><Left><Left>
+nnoremap <leader>r :OverCommandLine<CR>%s//gc<Left><Left><Left>
 
 " ,b -> elm-make on current file
 au FileType elm nmap <leader>b <Plug>(elm-make)
