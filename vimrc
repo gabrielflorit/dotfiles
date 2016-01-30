@@ -265,6 +265,7 @@ nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
 " ,gt -> git add and commit file
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <leader>gp :Gpush<CR>
 
 " ,, -> search filenames
 nnoremap <leader><leader> :FZF<CR>
