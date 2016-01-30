@@ -185,6 +185,9 @@ nmap <silent> <c-l> :wincmd l<CR>
 " allow quit via single keypress (Q)
 map Q :qa<CR>
 
+" interface with system clipboard directly
+set clipboard=unnamed
+
 
 
 " SEARCH
