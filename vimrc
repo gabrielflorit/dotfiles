@@ -224,9 +224,12 @@ let g:elm_make_output_file = 'index.html'
 let g:elm_make_show_warnings = 1
 
 " on save run elm-make on Main.elm
-:au BufWritePost *.elm silent! ElmMakeMain
+" :au BufWritePost *.elm silent! ElmMakeMain ElmFormat
+" :au BufWritePost *.elm silent! ElmFormat
+:au BufWritePost *.elm ElmFormat
+:au BufWritePost *.elm ElmMakeMain
 
-
+" let g:elm_format_autosave = 1
 
 " REMAPS
 " -----------------------------------------------
@@ -297,7 +300,7 @@ nmap ga <Plug>(EasyAlign)
 map Y y$
 
 " ,e -> UltiSnipsEdit
-nnoremap <leader>e :UltiSnipsEdit<CR>
+nnoremap <leader>ue :UltiSnipsEdit<CR>
 
 " ,r -> highlight search and replace matches
 nnoremap <leader>r :OverCommandLine<CR>%s//gc<Left><Left><Left>
@@ -308,8 +311,11 @@ au FileType elm nmap <leader>b <Plug>(elm-make)
 " ,m -> elm-make on Main.elm
 au FileType elm nmap <leader>m <Plug>(elm-make-main)
 
+" ,d -> elm-show-docs
+au FileType elm nmap <leader>d <Plug>(elm-show-docs)
+
+" ,e -> elm-error-detail
+au FileType elm nmap <leader>e <Plug>(elm-error-detail)
 " au FileType elm nmap <leader>t <Plug>(elm-test)
 " au FileType elm nmap <leader>r <Plug>(elm-repl)
-" au FileType elm nmap <leader>e <Plug>(elm-error-detail)
-" au FileType elm nmap <leader>d <Plug>(elm-show-docs)
 " au FileType elm nmap <leader>w <Plug>(elm-browse-docs)
