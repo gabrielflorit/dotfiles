@@ -26,7 +26,8 @@ Plug 'chriskempson/base16-vim'
 " show list of buffers in command line
 Plug 'bling/vim-bufferline'
 " status line
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " show trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -63,6 +64,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'unblevable/quick-scope'
 " highlight searches in command line window
 Plug 'osyo-manga/vim-over'
+" clever f - use f/F instead of ;/,
+Plug 'rhysd/clever-f.vim'
 
 
 
@@ -132,6 +135,7 @@ let g:airline_powerline_fonts = 1
 
 " specify statusline colorscheme
 let g:airline_theme='base16'
+" let g:loaded_airline_themes=1
 
 " disable statusline block separators
 let g:airline_left_sep=''
@@ -176,15 +180,6 @@ set mouse=a
 " source vimrc on every write
 autocmd bufwritepost .vimrc source $MYVIMRC
 
-" use ctrl-[hjkl] to select the active split
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-
-" allow quit via single keypress (Q)
-map Q :qa<CR>
-
 " interface with system clipboard directly
 set clipboard=unnamed
 
@@ -192,12 +187,6 @@ set clipboard=unnamed
 
 " SEARCH
 " -----------------------------------------------
-
-" configure vim-asterisk
-map *  <Plug>(asterisk-z*)
-map #  <Plug>(asterisk-z#)
-map g* <Plug>(asterisk-gz*)
-map g# <Plug>(asterisk-gz#)
 
 " tell fzf to use ag. it will respect .gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
@@ -245,6 +234,33 @@ let g:elm_make_show_warnings = 1
 " remap leader to comma
 let mapleader=','
 
+" map semicolon to colon in normal mode
+nmap ; :
+
+" configure vim-asterisk
+map *  <Plug>(asterisk-z*)
+map #  <Plug>(asterisk-z#)
+map g* <Plug>(asterisk-gz*)
+map g# <Plug>(asterisk-gz#)
+
+" use ctrl-[hjkl] to select the active split
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" allow quit via single keypress (Q)
+map Q :qa<CR>
+
+" ,cp -> close preview
+nnoremap <leader>pc :pc<CR>
+
+" ,cc -> close quickfix
+nnoremap <leader>cc :ccl<CR>
+
+" ,vs -> split window vertically
+noremap <leader>vs :vs<CR>
+
 " ,v -> edit vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
@@ -266,6 +282,7 @@ nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 " ,gt -> git add and commit file
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gs :Gstatus<CR>
 
 " ,, -> search filenames
 nnoremap <leader><leader> :FZF<CR>
