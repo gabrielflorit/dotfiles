@@ -53,6 +53,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'Chiel92/vim-autoformat'
 
 
+
 " SEARCH
 " ------------------------
 " better asterisk search
@@ -149,6 +150,9 @@ let g:airline#extensions#default#layout = [
 
 " highlight search results
 set hlsearch
+
+" clever f: search only in current line
+let g:clever_f_across_no_line = 1
 
 
 
@@ -305,17 +309,20 @@ nnoremap <leader>ue :UltiSnipsEdit<CR>
 " ,r -> highlight search and replace matches
 nnoremap <leader>r :OverCommandLine<CR>%s//gc<Left><Left><Left>
 
-" ,b -> elm-make on current file
-au FileType elm nmap <leader>b <Plug>(elm-make)
+" " ,b -> elm-make on current file
+" au FileType elm nmap <leader>b <Plug>(elm-make)
 
-" ,m -> elm-make on Main.elm
-au FileType elm nmap <leader>m <Plug>(elm-make-main)
+" " ,m -> elm-make on Main.elm
+" au FileType elm nmap <leader>m <Plug>(elm-make-main)
 
 " ,d -> elm-show-docs
 au FileType elm nmap <leader>d <Plug>(elm-show-docs)
 
 " ,e -> elm-error-detail
 au FileType elm nmap <leader>e <Plug>(elm-error-detail)
+
+" ,b -> elm-browse-docs
+au FileType elm nmap <leader>b <Plug>(elm-browse-docs)
+
 " au FileType elm nmap <leader>t <Plug>(elm-test)
 " au FileType elm nmap <leader>r <Plug>(elm-repl)
-" au FileType elm nmap <leader>w <Plug>(elm-browse-docs)
