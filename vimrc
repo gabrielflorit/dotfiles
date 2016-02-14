@@ -49,8 +49,6 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-repeat'
 " complementary pairs
 Plug 'tpope/vim-unimpaired'
-" autoformat
-Plug 'Chiel92/vim-autoformat'
 
 
 
@@ -66,7 +64,7 @@ Plug 'unblevable/quick-scope'
 " highlight searches in command line window
 Plug 'osyo-manga/vim-over'
 " clever f - use f/F instead of ;/,
-Plug 'rhysd/clever-f.vim'
+" Plug 'rhysd/clever-f.vim'
 
 
 
@@ -151,8 +149,11 @@ let g:airline#extensions#default#layout = [
 " highlight search results
 set hlsearch
 
-" clever f: search only in current line
-let g:clever_f_across_no_line = 1
+" " clever f: search only in current line
+" let g:clever_f_across_no_line = 1
+
+" " clever f: time out after 200ms
+" let g:clever_f_timeout_ms = 200
 
 
 
@@ -235,14 +236,16 @@ let g:elm_make_show_warnings = 1
 
 " let g:elm_format_autosave = 1
 
+
+
 " REMAPS
 " -----------------------------------------------
 
 " remap leader to comma
 let mapleader=','
 
-" map semicolon to colon in normal mode
-nmap ; :
+" " map semicolon to colon in normal mode
+" nmap ; :
 
 " configure vim-asterisk
 map *  <Plug>(asterisk-z*)
