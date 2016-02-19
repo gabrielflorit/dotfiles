@@ -23,8 +23,6 @@ Plug 'tpope/vim-vinegar'
 " ------------------------
 " color scheme
 Plug 'chriskempson/base16-vim'
-" show list of buffers in command line
-Plug 'bling/vim-bufferline'
 " status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -77,6 +75,7 @@ Plug 'mxw/vim-jsx'
 Plug 'wavded/vim-stylus'
 " Plug 'lambdatoast/elm.vim'
 Plug 'ElmCast/elm-vim'
+Plug 'digitaltoad/vim-pug'
 
 
 
@@ -84,6 +83,8 @@ Plug 'ElmCast/elm-vim'
 " ------------------------
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-function'
+Plug 'thinca/vim-textobj-function-javascript'
 
 
 
@@ -122,12 +123,6 @@ set laststatus=2
 
 " don't show vim mode
 set noshowmode
-
-" don't echo bufferline to statusline
-let g:bufferline_echo = 0
-
-" don't show buffer numbers in bufferline
-let g:bufferline_show_bufnr = 0
 
 " use patched powerline fonts in statusline
 let g:airline_powerline_fonts = 1
@@ -177,7 +172,6 @@ runtime macros/matchit.vim
 " enable hardtime
 let g:hardtime_default_on = 1
 let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-" let g:hardtime_ignore_buffer_patterns = ["netrw"]
 
 " enable mouse
 set mouse=a
