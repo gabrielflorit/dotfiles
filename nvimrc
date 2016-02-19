@@ -171,6 +171,7 @@ let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>"
 " source vimrc on every write
 autocmd bufwritepost init.vim source $MYVIMRC
 
+let test#strategy = 'neovim'
 let g:test#javascript#mocha#executable = 'node_modules/.bin/mocha --compilers js:babel-core/register'
 
 
@@ -263,6 +264,9 @@ map Q :qa<CR>
 " ,cp -> close preview
 nnoremap <leader>pc :pc<CR>
 
+" ,cc -> close location list
+nnoremap <leader>ll :lcl<CR>
+
 " ,cc -> close quickfix
 nnoremap <leader>cc :ccl<CR>
 
@@ -310,8 +314,11 @@ nnoremap <leader>ue :UltiSnipsEdit<CR>
 " ,r -> highlight search and replace matches
 nnoremap <leader>r :OverCommandLine<CR>%s//gc<Left><Left><Left>
 
-" ,t -> run test on current file
-nmap <silent> <leader>t :TestFile<CR>
+" ,tt -> run test on current file
+nmap <silent> <leader>tt :TestFile<CR>
+
+" ,t -> run test nearest to cursor
+nmap <silent> <leader>t :TestNearest<CR>
 
 " " ,b -> elm-make on current file
 " au FileType elm nmap <leader>b <Plug>(elm-make)
