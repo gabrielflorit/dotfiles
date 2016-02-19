@@ -14,6 +14,10 @@ Plug 'moll/vim-bbye'
 Plug 'takac/vim-hardtime'
 " file system explorer
 Plug 'tpope/vim-vinegar'
+" asynchronous make
+Plug 'benekastah/neomake'
+" test runner
+Plug 'janko-m/vim-test'
 
 
 
@@ -59,8 +63,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'unblevable/quick-scope'
 " highlight searches in command line window
 Plug 'osyo-manga/vim-over'
-" clever f - use f/F instead of ;/,
-" Plug 'rhysd/clever-f.vim'
 
 
 
@@ -136,9 +138,9 @@ let g:airline_right_sep=''
 
 " customize what blocks we show in statusline
 let g:airline#extensions#default#layout = [
-	\ [ 'a', 'b', 'c' ],
-	\ [ 'z', 'warning' ]
-	\ ]
+			\ [ 'a', 'b', 'c' ],
+			\ [ 'z', 'warning' ]
+			\ ]
 
 " highlight search results
 set hlsearch
@@ -169,8 +171,7 @@ let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>"
 " source vimrc on every write
 autocmd bufwritepost init.vim source $MYVIMRC
 
-" " interface with system clipboard directly
-" set clipboard=unnamed
+let g:test#javascript#mocha#executable = 'node_modules/.bin/mocha --compilers js:babel-core/register'
 
 
 
@@ -185,6 +186,14 @@ let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 " SYNTAX HIGHLIGHTING
 " -----------------------------------------------
 let g:jsx_ext_required=0
+
+let g:neomake_open_list = 2
+let g:neomake_verbose = 3
+let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd! BufWritePost *.js silent! Neomake
+" :au BufWritePost *.elm silent! ElmFormat
+
 
 
 
@@ -236,6 +245,11 @@ map *  <Plug>(asterisk-z*)
 map #  <Plug>(asterisk-z#)
 map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz#)
+
+" get past an nvim-specific bug https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
+if has('nvim')
+	nmap <BS> <C-W>h
+endif
 
 " use ctrl-[hjkl] to select the active split
 nmap <silent> <c-k> :wincmd k<CR>
@@ -295,6 +309,9 @@ nnoremap <leader>ue :UltiSnipsEdit<CR>
 
 " ,r -> highlight search and replace matches
 nnoremap <leader>r :OverCommandLine<CR>%s//gc<Left><Left><Left>
+
+" ,t -> run test on current file
+nmap <silent> <leader>t :TestFile<CR>
 
 " " ,b -> elm-make on current file
 " au FileType elm nmap <leader>b <Plug>(elm-make)
