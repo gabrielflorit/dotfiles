@@ -144,6 +144,9 @@ let g:airline#extensions#default#layout = [
 " highlight search results
 set hlsearch
 
+" enable italicised comments
+highlight Comment cterm=italic
+
 
 
 " EDITING
