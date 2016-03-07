@@ -69,8 +69,9 @@ Plug 'osyo-manga/vim-over'
 " SYNTAX HIGHLIGHTING
 " ------------------------
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'pangloss/vim-javascript'
-" Plug 'othree/yajs.vim'
+" Plug 'pangloss/vim-javascript'
+Plug 'rschmukler/pangloss-vim-indent'
+Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'wavded/vim-stylus'
 " Plug 'lambdatoast/elm.vim'
@@ -112,8 +113,6 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " main color scheme
 set background=dark
 
-" colorscheme OceanicNext
-" colorscheme base16-oceanicnext
 colorscheme base16-default
 
 " tab settings
@@ -174,6 +173,18 @@ autocmd bufwritepost init.vim source $MYVIMRC
 let test#strategy = 'neovim'
 let g:test#javascript#mocha#executable = 'node_modules/.bin/mocha --compilers js:babel-core/register'
 
+" use ~ to toggle cases
+function! TwiddleCase(str)
+	if a:str ==# toupper(a:str)
+		let result = tolower(a:str)
+	elseif a:str ==# tolower(a:str)
+		let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+	else
+		let result = toupper(a:str)
+	endif
+	return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 
 " SEARCH
@@ -192,7 +203,7 @@ let g:neomake_open_list = 2
 let g:neomake_verbose = 3
 let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
 let g:neomake_javascript_enabled_makers = ['eslint']
-autocmd! BufWritePost *.js silent! Neomake
+" autocmd! BufWritePost *.js silent! Neomake
 " :au BufWritePost *.elm silent! ElmFormat
 
 
@@ -237,9 +248,6 @@ let g:elm_make_show_warnings = 1
 
 " remap leader to comma
 let mapleader=','
-
-" " map semicolon to colon in normal mode
-" nmap ; :
 
 " configure vim-asterisk
 map *  <Plug>(asterisk-z*)
@@ -319,6 +327,8 @@ nmap <silent> <leader>tt :TestFile<CR>
 
 " ,t -> run test nearest to cursor
 nmap <silent> <leader>t :TestNearest<CR>
+
+nmap <silent> <leader>l :Neomake<CR>
 
 " " ,b -> elm-make on current file
 " au FileType elm nmap <leader>b <Plug>(elm-make)
