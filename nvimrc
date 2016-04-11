@@ -49,6 +49,8 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-repeat'
 " complementary pairs
 Plug 'tpope/vim-unimpaired'
+" autoformat
+Plug 'Chiel92/vim-autoformat'
 
 
 
@@ -56,6 +58,8 @@ Plug 'tpope/vim-unimpaired'
 " ------------------------
 " better asterisk search
 Plug 'haya14busa/vim-asterisk'
+" better incsearch
+Plug 'haya14busa/incsearch.vim'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
@@ -141,9 +145,6 @@ let g:airline#extensions#default#layout = [
 			\ [ 'z', 'warning' ]
 			\ ]
 
-" highlight search results
-set hlsearch
-
 " enable italicised comments
 highlight Comment cterm=italic
 
@@ -194,8 +195,20 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 " SEARCH
 " -----------------------------------------------
 
+" highlight search results
+set hlsearch
+
 " tell fzf to use ag. it will respect .gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
+" enable automatic :nohlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 
 
@@ -260,6 +273,11 @@ map #  <Plug>(asterisk-z#)
 map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz#)
 
+" configure incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
 " get past an nvim-specific bug https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
 if has('nvim')
 	nmap <BS> <C-W>h
@@ -278,10 +296,10 @@ map Q :qa<CR>
 nnoremap <leader>pc :pc<CR>
 
 " ,cc -> close location list
-nnoremap <leader>ll :lcl<CR>
+nnoremap <leader>cl :lcl<CR>
 
 " ,cc -> close quickfix
-nnoremap <leader>cc :ccl<CR>
+nnoremap <leader>cq :ccl<CR>
 
 " ,vs -> split window vertically
 noremap <leader>vs :vs<CR>
