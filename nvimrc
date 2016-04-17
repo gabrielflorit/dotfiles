@@ -62,7 +62,10 @@ Plug 'haya14busa/vim-asterisk'
 Plug 'haya14busa/incsearch.vim'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+" fzf.vim
 Plug 'junegunn/fzf.vim'
+" fzf mru plugin
+Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
 Plug 'unblevable/quick-scope'
 " highlight searches in command line window
@@ -73,12 +76,10 @@ Plug 'osyo-manga/vim-over'
 " SYNTAX HIGHLIGHTING
 " ------------------------
 Plug 'mustache/vim-mustache-handlebars'
-" Plug 'pangloss/vim-javascript'
 Plug 'rschmukler/pangloss-vim-indent'
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'wavded/vim-stylus'
-" Plug 'lambdatoast/elm.vim'
 Plug 'ElmCast/elm-vim'
 Plug 'digitaltoad/vim-pug'
 
@@ -97,7 +98,7 @@ Plug 'thinca/vim-textobj-function-javascript'
 " ------------------------
 Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips', { 'on': [] }
 
 
 
@@ -189,6 +190,12 @@ function! TwiddleCase(str)
 	return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
+" defer ultisnips loading
+augroup load_us
+	autocmd!
+	autocmd InsertEnter * call plug#load('ultisnips') | call UltiSnips#FileTypeChanged() | autocmd! load_us
+augroup END
 
 
 
@@ -328,7 +335,7 @@ nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gs :Gstatus<CR>
 
 " ,, -> search filenames
-nnoremap <leader><leader> :FZF<CR>
+nnoremap <leader><leader> :FilesMru<CR>
 
 " ,f -> search files with given string
 nnoremap <leader>f :Ag<CR>
