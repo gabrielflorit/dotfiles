@@ -274,6 +274,8 @@ let g:elm_make_show_warnings = 1
 " remap leader to comma
 let mapleader=','
 
+map 0 ^
+
 " configure vim-asterisk
 map *  <Plug>(asterisk-z*)
 map #  <Plug>(asterisk-z#)
