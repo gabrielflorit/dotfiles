@@ -80,7 +80,6 @@ Plug 'rschmukler/pangloss-vim-indent'
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 Plug 'wavded/vim-stylus'
-Plug 'ElmCast/elm-vim'
 Plug 'digitaltoad/vim-pug'
 
 
@@ -217,19 +216,20 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
+let g:fzf_filemru_bufwrite = 1
+
 
 
 " SYNTAX HIGHLIGHTING
 " -----------------------------------------------
 let g:jsx_ext_required=0
 
-let g:neomake_list_height = 3
+let g:neomake_list_height = 2
 let g:neomake_open_list = 2
 let g:neomake_verbose = 3
 let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint_d'
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost *.js silent! Neomake
-" :au BufWritePost *.elm silent! ElmFormat
 
 
 
@@ -248,24 +248,6 @@ let g:UltiSnipsExpandTrigger       = '<tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<Right>'
 let g:UltiSnipsJumpBackwardTrigger = '<Left>'
 
-
-
-" ELM
-" -----------------------------------------------
-
-" make elm compile to index.html
-let g:elm_make_output_file = 'index.html'
-
-" make elm make you fix warnings
-let g:elm_make_show_warnings = 1
-
-" on save run elm-make on Main.elm
-" :au BufWritePost *.elm silent! ElmMakeMain ElmFormat
-" :au BufWritePost *.elm silent! ElmFormat
-:au BufWritePost *.elm ElmFormat
-:au BufWritePost *.elm ElmMakeMain
-
-" let g:elm_format_autosave = 1
 
 
 
@@ -362,21 +344,3 @@ nmap <silent> <leader>tt :TestFile<CR>
 nmap <silent> <leader>t :TestNearest<CR>
 
 nmap <silent> <leader>l :Neomake<CR>
-
-" " ,b -> elm-make on current file
-" au FileType elm nmap <leader>b <Plug>(elm-make)
-
-" " ,m -> elm-make on Main.elm
-" au FileType elm nmap <leader>m <Plug>(elm-make-main)
-
-" ,d -> elm-show-docs
-au FileType elm nmap <leader>d <Plug>(elm-show-docs)
-
-" ,e -> elm-error-detail
-au FileType elm nmap <leader>e <Plug>(elm-error-detail)
-
-" ,b -> elm-browse-docs
-au FileType elm nmap <leader>b <Plug>(elm-browse-docs)
-
-" au FileType elm nmap <leader>t <Plug>(elm-test)
-" au FileType elm nmap <leader>r <Plug>(elm-repl)
