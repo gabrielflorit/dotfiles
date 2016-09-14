@@ -229,6 +229,7 @@ let g:neomake_open_list = 2
 let g:neomake_verbose = 3
 let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint_d'
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 autocmd! BufWritePost *.js silent! Neomake
 
 
