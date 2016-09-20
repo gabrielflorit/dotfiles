@@ -1,3 +1,7 @@
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 " LOAD PLUGINS
 " -----------------------------------------------
 call plug#begin()
@@ -24,12 +28,13 @@ Plug 'janko-m/vim-test'
 " APPEARANCE
 " ------------------------
 " color scheme
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 " status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " show trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'mhartington/oceanic-next'
 
 
 
@@ -70,6 +75,7 @@ Plug 'tweekmonster/fzf-filemru'
 Plug 'unblevable/quick-scope'
 " highlight searches in command line window
 Plug 'osyo-manga/vim-over'
+Plug 'dkprice/vim-easygrep'
 
 
 
@@ -97,7 +103,7 @@ Plug 'thinca/vim-textobj-function-javascript'
 " ------------------------
 Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
-Plug 'SirVer/ultisnips', { 'on': [] }
+Plug 'SirVer/ultisnips'
 
 
 
@@ -117,7 +123,7 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " main color scheme
 set background=dark
 
-colorscheme base16-default
+colorscheme OceanicNext
 
 " tab settings
 set tabstop=2 shiftwidth=2
@@ -132,7 +138,7 @@ set noshowmode
 let g:airline_powerline_fonts = 1
 
 " specify statusline colorscheme
-let g:airline_theme='base16'
+let g:airline_theme='oceanicnext'
 " let g:loaded_airline_themes=1
 
 " disable statusline block separators
@@ -190,11 +196,11 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
-" defer ultisnips loading
-augroup load_us
-	autocmd!
-	autocmd InsertEnter * call plug#load('ultisnips') | call UltiSnips#FileTypeChanged() | autocmd! load_us
-augroup END
+" " defer ultisnips loading
+" augroup load_us
+" 	autocmd!
+" 	autocmd InsertEnter * call plug#load('ultisnips') | call UltiSnips#FileTypeChanged() | autocmd! load_us
+" augroup END
 
 
 
