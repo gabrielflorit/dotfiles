@@ -1,6 +1,3 @@
-if (has("termguicolors"))
- set termguicolors
-endif
 
 " LOAD PLUGINS
 " -----------------------------------------------
@@ -114,6 +111,12 @@ call plug#end()
 " APPEARANCE
 " ----------------------------------------------
 
+syntax enable
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 " vertical bar in insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 
@@ -138,7 +141,7 @@ set noshowmode
 let g:airline_powerline_fonts = 1
 
 " specify statusline colorscheme
-let g:airline_theme='oceanicnext'
+let g:airline_theme='base16'
 " let g:loaded_airline_themes=1
 
 " disable statusline block separators
