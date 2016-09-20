@@ -72,7 +72,6 @@ Plug 'tweekmonster/fzf-filemru'
 Plug 'unblevable/quick-scope'
 " highlight searches in command line window
 Plug 'osyo-manga/vim-over'
-Plug 'dkprice/vim-easygrep'
 
 
 
@@ -198,12 +197,6 @@ function! TwiddleCase(str)
 	return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
-
-" " defer ultisnips loading
-" augroup load_us
-" 	autocmd!
-" 	autocmd InsertEnter * call plug#load('ultisnips') | call UltiSnips#FileTypeChanged() | autocmd! load_us
-" augroup END
 
 
 
