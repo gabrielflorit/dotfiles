@@ -19,6 +19,10 @@ Plug 'tpope/vim-vinegar'
 Plug 'benekastah/neomake'
 " test runner
 Plug 'janko-m/vim-test'
+" R plugin
+Plug 'jalvesaq/Nvim-R'
+" csv plugin
+Plug 'chrisbra/csv.vim'
 
 
 
@@ -112,7 +116,7 @@ call plug#end()
 syntax enable
 
 if (has("termguicolors"))
- set termguicolors
+	set termguicolors
 endif
 
 " vertical bar in insert mode
