@@ -25,7 +25,6 @@ Plug 'janko-m/vim-test'
 " APPEARANCE
 " ------------------------
 " color scheme
-" Plug 'chriskempson/base16-vim'
 " status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -41,8 +40,6 @@ Plug 'mhartington/oceanic-next'
 Plug 'tpope/vim-commentary'
 " surround
 Plug 'tpope/vim-surround'
-" easy align
-Plug 'junegunn/vim-easy-align'
 " auto close xml tags
 Plug 'alvan/vim-closetag'
 " auto insert or delete brackets, parens, quotes in pair
@@ -72,6 +69,8 @@ Plug 'tweekmonster/fzf-filemru'
 Plug 'unblevable/quick-scope'
 " highlight searches in command line window
 Plug 'osyo-manga/vim-over'
+" make searching across lines easier/faster
+Plug 'justinmk/vim-sneak'
 
 
 
