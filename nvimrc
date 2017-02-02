@@ -173,6 +173,10 @@ let g:mustache_abbreviations = 1
 " enable matchit
 runtime macros/matchit.vim
 
+" disable automatic <- insertion in R
+let R_assign = 0
+let R_openhtml = 1
+
 
 
 " MISC
