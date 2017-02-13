@@ -205,6 +205,11 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
+augroup COMMENTS
+	au!
+	autocmd InsertCharPre * if search('\v^\s*\/\/ %#', 'bcnw') != 0 | let v:char = toupper(v:char) | endif
+augroup END
+
 
 
 " SEARCH
