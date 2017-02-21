@@ -59,6 +59,8 @@ Plug 'Chiel92/vim-autoformat'
 
 " SEARCH
 " ------------------------
+" easy motion
+Plug 'easymotion/vim-easymotion'
 " better asterisk search
 Plug 'haya14busa/vim-asterisk'
 " better incsearch
@@ -273,6 +275,9 @@ let g:UltiSnipsJumpBackwardTrigger = '<Left>'
 let mapleader=','
 
 map 0 ^
+
+" configure easy-motion
+map <Leader> <Plug>(easymotion-prefix)
 
 " configure vim-asterisk
 map *  <Plug>(asterisk-z*)
