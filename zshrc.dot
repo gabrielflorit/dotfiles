@@ -1,18 +1,10 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
-export PATH=/usr/local/share/python:$PATH
+#
+# User configuration sourced by interactive shells
+#
 
-source $ZPLUG_HOME/init.zsh
-
-zplug 'zsh-users/zsh-syntax-highlighting'
-
-zplug "mafredri/zsh-async", on:sindresorhus/pure
-zplug "sindresorhus/pure", use:pure.zsh
-
-if ! zplug check --verbose; then
-    printf 'Install? [y/N]: '
-    if read -q; then
-        echo; zplug install
-    fi
+# Source zim
+if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
+  source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
 fi
 
-zplug load --verbose
+export PATH=/usr/local/share/python:$PATH
