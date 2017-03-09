@@ -15,6 +15,8 @@ alias gd='git diff'
 alias gs='git status'
 alias g='gac'
 
+alias bi='brew install'
+
 # Override zim's alias
 alias d='fasd_cd -d'
 
