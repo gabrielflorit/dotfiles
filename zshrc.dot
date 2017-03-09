@@ -10,5 +10,15 @@ fi
 # Enable python for neovim
 export PATH=/usr/local/share/python:$PATH
 
+alias ga='git add'
+alias gd='git diff'
+alias gs='git status'
+alias g='gac'
+
 # Override zim's alias
 alias d='fasd_cd -d'
+
+# Neovim shortcuts
+alias v='nvim'
+
+export PATH="$PATH:`yarn global bin`"
