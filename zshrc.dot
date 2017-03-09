@@ -1,0 +1,18 @@
+export ZPLUG_HOME=/usr/local/opt/zplug
+export PATH=/usr/local/share/python:$PATH
+
+source $ZPLUG_HOME/init.zsh
+
+zplug 'zsh-users/zsh-syntax-highlighting'
+
+zplug "mafredri/zsh-async", on:sindresorhus/pure
+zplug "sindresorhus/pure", use:pure.zsh
+
+if ! zplug check --verbose; then
+    printf 'Install? [y/N]: '
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load --verbose
