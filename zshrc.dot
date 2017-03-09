@@ -7,4 +7,8 @@ if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
 fi
 
+# Enable python for neovim
 export PATH=/usr/local/share/python:$PATH
+
+# Override zim's alias
+alias d='fasd_cd -d'
