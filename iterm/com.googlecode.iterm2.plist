@@ -278,14 +278,28 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0x6a-0x40000</key>
+		<key>0x68-0x40000</key>
 		<dict>
 			<key>Action</key>
 			<integer>18</integer>
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x6a-0x40000</key>
+		<dict>
+			<key>Action</key>
+			<integer>21</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
 		<key>0x6b-0x40000</key>
+		<dict>
+			<key>Action</key>
+			<integer>20</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0x6c-0x40000</key>
 		<dict>
 			<key>Action</key>
 			<integer>19</integer>
@@ -413,10 +427,15 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>478 320 445 249 0 0 1280 777 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1549 574 796 473 1280 0 2560 1440 </string>
+	<string>1549 590 937 465 1280 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>1639 250 810 527 1280 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
