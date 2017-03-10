@@ -19,9 +19,6 @@ alias g='gac'
 # Brew
 alias bi='brew install'
 
-# Override zim's alias
-alias d='fasd_cd -d'
-
 # Neovim
 alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
 
