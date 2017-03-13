@@ -8,16 +8,16 @@ call plug#begin()
 
 " MISCELLANEOUS
 " -----------------------------------------------
-
 " R plugin
 Plug 'jalvesaq/Nvim-R'
+" file system explorer
+Plug 'tpope/vim-vinegar'
 
 
 
 
 " EDITING
 " ------------------------
-
 " comment/uncomment
 Plug 'tpope/vim-commentary'
 " surround
@@ -32,7 +32,6 @@ Plug 'tpope/vim-unimpaired'
 
 " APPEARANCE
 " ------------------------
-
 " show trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
 " color scheme
@@ -41,9 +40,22 @@ Plug 'mhartington/oceanic-next'
 
 
 
+" SYNTAX HIGHLIGHTING
+" ------------------------
+" Plug 'wavded/vim-stylus'
+
+
+
+
+" AUTOCOMPLETION
+" ------------------------
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+
+
+
 " SEARCH
 " ------------------------
-
 " highlight which characters to target for f, F and family
 Plug 'gabrielflorit/quick-scope'
 " make searching across lines easier/faster
@@ -90,6 +102,18 @@ autocmd bufwritepost init.vim source $MYVIMRC
 
 " use the general register for yanking
 set clipboard+=unnamedplus
+
+
+
+
+" AUTOCOMPLETION
+" -----------------------------------------------
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
+" Use tab to autocomplete and cycle through options.
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 
 

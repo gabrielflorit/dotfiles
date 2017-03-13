@@ -20,7 +20,7 @@ alias g='gac'
 alias bi='brew install'
 
 # Neovim
-alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
+alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim .'
 
 # Allow yarn globals to be executable
 export PATH="$PATH:`yarn global bin`"
