@@ -123,6 +123,3 @@ nnoremap <Tab> :bnext<CR>
 
 " shift-tab -> previous buffer
 nnoremap <S-Tab> :bprevious<CR>
-
-" " esc esc -> clear search highlight
-" nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
