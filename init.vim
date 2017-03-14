@@ -152,7 +152,7 @@ nnoremap <leader>cl :lcl<CR>
 nnoremap <leader>cq :ccl<CR>
 
 " ,v -> edit vimrc
-nmap <leader>v :tabedit $MYVIMRC<CR>
+nnoremap <leader>v :tabedit $MYVIMRC<CR>
 
 " ,w -> save
 nnoremap <leader>w :w<CR>
@@ -162,3 +162,5 @@ nnoremap <Tab> :bnext<CR>
 
 " shift-tab -> previous buffer
 nnoremap <S-Tab> :bprevious<CR>
+
+nnoremap <leader>ne :NeoSnippetEdit<CR>
