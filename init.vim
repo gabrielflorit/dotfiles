@@ -42,14 +42,18 @@ Plug 'mhartington/oceanic-next'
 
 " SYNTAX HIGHLIGHTING
 " ------------------------
-" Plug 'wavded/vim-stylus'
+" Stylus syntax highlighting
+Plug 'wavded/vim-stylus'
 
 
 
 
 " AUTOCOMPLETION
 " ------------------------
+" Asynchronous completion framework
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Enable snippets
+Plug 'Shougo/neosnippet.vim'
 
 
 
@@ -77,9 +81,8 @@ call plug#end()
 " use true colors
 set termguicolors
 
-" main color scheme
+" color scheme
 set background=dark
-
 colorscheme OceanicNext
 
 " tab settings
@@ -112,8 +115,19 @@ set clipboard+=unnamedplus
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
-" Use tab to autocomplete and cycle through options.
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" Disable default snippets
+let g:neosnippet#disable_runtime_snippets = {
+			\   '_' : 1,
+			\ }
+
+" Use custom snippets
+let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
+
+" If there is a snippet, expand it.
+" Otherwise if there is an autocompletion, use it.
+" Otherwise use tab.
+
+imap <expr><tab> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<tab>")
 
 
 
