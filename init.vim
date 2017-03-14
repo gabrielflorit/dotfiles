@@ -126,8 +126,9 @@ let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
 " If there is a snippet, expand it.
 " Otherwise if there is an autocompletion, use it.
 " Otherwise use tab.
-
-imap <expr><tab> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<tab>")
+imap <expr><tab> neosnippet#expandable()
+			\ ? "\<Plug>(neosnippet_expand_or_jump)"
+			\ : (pumvisible() ? "\<C-n>" : "\<tab>")
 
 
 
