@@ -64,6 +64,10 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'gabrielflorit/quick-scope'
 " make searching across lines easier/faster
 Plug 'justinmk/vim-sneak'
+" better asterisk search
+Plug 'haya14busa/vim-asterisk'
+" better incsearch
+Plug 'haya14busa/incsearch.vim'
 
 
 
@@ -109,6 +113,23 @@ set clipboard+=unnamedplus
 
 
 
+" SEARCH
+" -----------------------------------------------
+
+" set hlsearch
+
+" enable automatic :nohlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+
+
+
 " AUTOCOMPLETION
 " -----------------------------------------------
 
@@ -142,6 +163,23 @@ let mapleader=','
 " allow quit via single keypress (Q)
 map Q :qa<CR>
 
+" configure vim-asterisk
+map *  <Plug>(asterisk-z*)
+map #  <Plug>(asterisk-z#)
+map g*  <Plug>(asterisk-gz*)
+map g#  <Plug>(asterisk-gz#)
+
+" configure incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" use ctrl-[hjkl] to select the active split
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
 " ,cp -> close preview
 nnoremap <leader>pc :pc<CR>
 
@@ -163,4 +201,8 @@ nnoremap <Tab> :bnext<CR>
 " shift-tab -> previous buffer
 nnoremap <S-Tab> :bprevious<CR>
 
+" ,ne -> edit this filetype's snippets
 nnoremap <leader>ne :NeoSnippetEdit<CR>
+
+" esc esc -> clear search highlight
+nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
