@@ -154,6 +154,14 @@ imap <expr><tab> neosnippet#expandable()
 
 
 
+" EVENTS
+" -----------------------------------------------
+
+:au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+
+
+
 " REMAPS
 " -----------------------------------------------
 
@@ -175,10 +183,25 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " use ctrl-[hjkl] to select the active split
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
+
+" nmap <silent> <c-k> :wincmd k<CR>
+" nmap <silent> <c-j> :wincmd j<CR>
+" nmap <silent> <c-h> :wincmd h<CR>
+" nmap <silent> <c-l> :wincmd l<CR>
+
+" tnoremap <C-h> <C-\><C-n><C-h>
+" tnoremap <C-j> <C-\><C-n><C-j>
+" tnoremap <C-k> <C-\><C-n><C-k>
+" tnoremap <C-l> <C-\><C-n><C-l>
+
+:tnoremap <C-h> <C-\><C-n><C-w>h
+:tnoremap <C-j> <C-\><C-n><C-w>j
+:tnoremap <C-k> <C-\><C-n><C-w>k
+:tnoremap <C-l> <C-\><C-n><C-w>l
+:nnoremap <C-h> <C-w>h
+:nnoremap <C-j> <C-w>j
+:nnoremap <C-k> <C-w>k
+:nnoremap <C-l> <C-w>l
 
 " ,cp -> close preview
 nnoremap <leader>pc :pc<CR>
@@ -206,3 +229,24 @@ nnoremap <leader>ne :NeoSnippetEdit<CR>
 
 " esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
+
+
+
+
+" LAYOUT
+" -----------------------------------------------
+function! DefaultLayout()
+
+	vnew
+	e .
+	vnew
+	e .
+	wincmd l
+	wincmd l
+	sp .
+	wincmd j
+	e term://zsh
+	resize 10
+
+endfunction
+command! -register DefaultLayout call DefaultLayout()
