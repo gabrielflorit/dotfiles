@@ -92,6 +92,9 @@ colorscheme OceanicNext
 " tab settings
 set tabstop=2 shiftwidth=2
 
+" color cursor red in terminal only
+highlight TermCursor ctermfg=red guifg=red
+
 
 
 
@@ -183,17 +186,6 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " use ctrl-[hjkl] to select the active split
-
-" nmap <silent> <c-k> :wincmd k<CR>
-" nmap <silent> <c-j> :wincmd j<CR>
-" nmap <silent> <c-h> :wincmd h<CR>
-" nmap <silent> <c-l> :wincmd l<CR>
-
-" tnoremap <C-h> <C-\><C-n><C-h>
-" tnoremap <C-j> <C-\><C-n><C-j>
-" tnoremap <C-k> <C-\><C-n><C-k>
-" tnoremap <C-l> <C-\><C-n><C-l>
-
 :tnoremap <C-h> <C-\><C-n><C-w>h
 :tnoremap <C-j> <C-\><C-n><C-w>j
 :tnoremap <C-k> <C-\><C-n><C-w>k
