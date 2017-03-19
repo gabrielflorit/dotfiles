@@ -230,7 +230,8 @@ nnoremap <leader>ne :NeoSnippetEdit<CR>
 " esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
-
+" esc -> esc in terminal
+tnoremap <Esc> <C-\><C-n>
 
 
 " LAYOUT
