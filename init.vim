@@ -60,6 +60,10 @@ Plug 'Shougo/neosnippet.vim'
 
 " SEARCH
 " ------------------------
+" fzf vim commands
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" most-recently used files for fzf.vim
+Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
 Plug 'gabrielflorit/quick-scope'
 " make searching across lines easier/faster
@@ -113,6 +117,9 @@ autocmd bufwritepost init.vim source $MYVIMRC
 " use the general register for yanking
 set clipboard+=unnamedplus
 
+" show the effects of a command incrementally
+set inccommand=nosplit
+
 
 
 
@@ -129,6 +136,9 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" tell fzf to use ag. it will respect .gitignore
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 
 
@@ -222,9 +232,14 @@ nnoremap <leader>ne :NeoSnippetEdit<CR>
 " esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
-" esc -> esc in terminal
-tnoremap <Esc> <C-\><C-n>
+" ,, -> search filenames
+nnoremap <leader><leader> :FilesMru<CR>
 
+" ,f -> search files with given string
+nnoremap <leader>f :Ag<CR>
+
+" ,r -> highlight search and replace matches
+nnoremap <leader>r :%s//g<Left><Left>
 
 " LAYOUT
 " -----------------------------------------------

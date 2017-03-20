@@ -23,8 +23,16 @@ alias bi='brew install'
 
 # Neovim
 alias vim='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
-# alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . .'
-alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultLayout'
+alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . .'
+# alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultLayout'
 
 # Allow yarn globals to be executable
-export PATH="$PATH:`yarn global bin`"
+# export PATH="$PATH:`yarn global bin`"
+export PATH="$(yarn global bin):$PATH"
+
+# Go
+export GOPATH=$HOME/.go
+export GOROOT=/usr/local/Cellar/go@1.7/1.7.5/libexec/
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
