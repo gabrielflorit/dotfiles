@@ -99,6 +99,9 @@ set tabstop=2 shiftwidth=2
 " color cursor red in terminal only
 highlight TermCursor ctermfg=red guifg=red
 
+" disable mru colors
+let g:fzf_filemru_colors = {}
+
 
 
 
@@ -195,15 +198,21 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+" unmap <Esc> in fzf buffers, so we can still use esc to close
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+
+" close terminal with esc
+tnoremap <Esc> <C-\><C-n>
+
 " use ctrl-[hjkl] to select the active split
-:tnoremap <C-h> <C-\><C-n><C-w>h
-:tnoremap <C-j> <C-\><C-n><C-w>j
-:tnoremap <C-k> <C-\><C-n><C-w>k
-:tnoremap <C-l> <C-\><C-n><C-w>l
-:nnoremap <C-h> <C-w>h
-:nnoremap <C-j> <C-w>j
-:nnoremap <C-k> <C-w>k
-:nnoremap <C-l> <C-w>l
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " ,cp -> close preview
 nnoremap <leader>pc :pc<CR>
@@ -240,6 +249,9 @@ nnoremap <leader>f :Ag<CR>
 
 " ,r -> highlight search and replace matches
 nnoremap <leader>r :%s//g<Left><Left>
+
+" ,t -> open terminal
+nnoremap <leader>t :terminal<CR>
 
 " LAYOUT
 " -----------------------------------------------
