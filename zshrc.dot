@@ -10,6 +10,12 @@ fi
 # Enable python for neovim
 export PATH=/usr/local/share/python:$PATH
 
+# term-img
+alias i='term-img'
+
+# bash
+alias l='ls -ltG'
+
 # Git
 alias ga='git add'
 alias gd='git diff'
