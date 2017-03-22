@@ -105,11 +105,37 @@ let g:fzf_filemru_colors = {}
 
 
 
-" MISC
+" FUNCTIONS
 " -----------------------------------------------
 
-" source vimrc on every write
-autocmd bufwritepost init.vim source $MYVIMRC
+function! DplyrSnippet()
+
+	" enforce good habits
+	execute '.s/ +$/ wrong/e'
+	execute '.s/ %>%$/ wrong/e'
+
+	" swap c at end of line with %>%
+	execute '.s/ c$/ %>%/e'
+
+	" swap p at end of line with +
+	execute '.s/ p$/ +/e'
+
+endfunction
+
+
+
+
+" AUTOCOMMANDS
+" -----------------------------------------------
+
+" set Rmd comment string
+autocmd FileType rmd setlocal commentstring=#\ %s
+
+" unmap <Esc> in fzf buffers, so we can still use esc to close
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+
+" avoid typing %>% and +
+autocmd FileType rmd inoremap <buffer> <CR> <ESC>:call DplyrSnippet()<CR>o
 
 
 
@@ -123,13 +149,14 @@ set clipboard+=unnamedplus
 " show the effects of a command incrementally
 set inccommand=nosplit
 
+" disable automatic <- insertion in R
+let R_assign = 0
+
 
 
 
 " SEARCH
 " -----------------------------------------------
-
-" set hlsearch
 
 " enable automatic :nohlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -160,21 +187,6 @@ let g:neosnippet#disable_runtime_snippets = {
 " Use custom snippets
 let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
 
-" If there is a snippet, expand it.
-" Otherwise if there is an autocompletion, use it.
-" Otherwise use tab.
-imap <expr><tab> neosnippet#expandable()
-			\ ? "\<Plug>(neosnippet_expand_or_jump)"
-			\ : (pumvisible() ? "\<C-n>" : "\<tab>")
-
-
-
-
-" EVENTS
-" -----------------------------------------------
-
-:au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-
 
 
 
@@ -197,9 +209,6 @@ map g#  <Plug>(asterisk-gz#)
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-
-" unmap <Esc> in fzf buffers, so we can still use esc to close
-autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
 " close terminal with esc
 tnoremap <Esc> <C-\><C-n>
@@ -238,6 +247,13 @@ nnoremap <S-Tab> :bprevious<CR>
 " ,ne -> edit this filetype's snippets
 nnoremap <leader>ne :NeoSnippetEdit<CR>
 
+" tab -> If there is a snippet, expand it.
+" Otherwise if there is an autocompletion, use it.
+" Otherwise use tab.
+imap <expr><tab> neosnippet#expandable()
+			\ ? "\<Plug>(neosnippet_expand_or_jump)"
+			\ : (pumvisible() ? "\<C-n>" : "\<tab>")
+
 " esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
@@ -252,21 +268,3 @@ nnoremap <leader>r :%s//g<Left><Left>
 
 " ,t -> open terminal
 nnoremap <leader>t :terminal<CR>
-
-" LAYOUT
-" -----------------------------------------------
-function! DefaultLayout()
-
-	vnew
-	e .
-	vnew
-	e .
-	wincmd l
-	wincmd l
-	sp .
-	wincmd j
-	e term://zsh
-	resize 10
-
-endfunction
-command! -register DefaultLayout call DefaultLayout()
