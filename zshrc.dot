@@ -10,6 +10,9 @@ fi
 # Enable python for neovim
 export PATH=/usr/local/share/python:$PATH
 
+# trash
+alias rm='trash'
+
 # term-img
 alias i='term-img'
 
@@ -28,8 +31,9 @@ alias gc='git checkout'
 alias bi='brew install'
 
 # Neovim
-alias vim='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
-alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . .'
+alias vim='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultWorkspace'
+alias vimr='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
+alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace'
 # alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultLayout'
 
 # Allow yarn globals to be executable

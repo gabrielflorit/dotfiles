@@ -122,17 +122,23 @@ function! DplyrSnippet()
 
 endfunction
 
+function! DefaultWorkspace()
+
+	autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+endfunction
+
 
 
 
 " AUTOCOMMANDS
 " -----------------------------------------------
 
-" set Rmd comment string
-autocmd FileType rmd setlocal commentstring=#\ %s
-
 " unmap <Esc> in fzf buffers, so we can still use esc to close
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+
+" set Rmd comment string
+autocmd FileType rmd setlocal commentstring=#\ %s
 
 " avoid typing %>% and +
 autocmd FileType rmd inoremap <buffer> <CR> <ESC>:call DplyrSnippet()<CR>o
@@ -186,6 +192,14 @@ let g:neosnippet#disable_runtime_snippets = {
 
 " Use custom snippets
 let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
+
+
+
+
+" COMMANDS
+" -----------------------------------------------
+
+command! -register DefaultWorkspace call DefaultWorkspace()
 
 
 
