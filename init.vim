@@ -166,12 +166,6 @@ let R_assign = 0
 
 " enable automatic :nohlsearch
 let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
 
 " tell fzf to use ag. it will respect .gitignore
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
@@ -224,6 +218,10 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+" turn hlsearch off after searching-related motions
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+
 " close terminal with esc
 tnoremap <Esc> <C-\><C-n>
 
@@ -247,7 +245,7 @@ nnoremap <leader>cl :lcl<CR>
 nnoremap <leader>cq :ccl<CR>
 
 " ,v -> edit vimrc
-nnoremap <leader>v :tabedit $MYVIMRC<CR>
+nnoremap <leader>v :e $MYVIMRC<CR>
 
 " ,w -> save
 nnoremap <leader>w :w<CR>
