@@ -119,16 +119,12 @@ function! DplyrChains()
 	if match(line, ' c$') > 0
 		call setline('.', substitute(line, ' c$', ' %>%', 'e'))
 		execute 'normal! $'
+	elseif match(line, ' p$') > 0
+		call setline('.', substitute(line, ' p$', ' +', 'e'))
+		execute 'normal! $'
 	endif
 
 endfunction
-
-	" " enforce good habits
-	" execute '.s/ +$/ wrong/e'
-	" execute '.s/ %>%$/ wrong/e'
-	" " swap c/p at end of line with %>%/+
-	" execute '.s/ c$/ %>%/e'
-	" execute '.s/ p$/ +/e'
 
 function! DefaultWorkspace()
 
@@ -149,17 +145,8 @@ autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 autocmd FileType rmd setlocal commentstring=#\ %s
 
 " avoid typing %>% and +
-inoremap <CR> <C-O>:call DplyrChains()<CR><CR>
+autocmd FileType rmd inoremap <buffer> <CR> <C-O>:call DplyrChains()<CR><CR>
 
-" autocmd FileType rmd inoremap <buffer> <expr> <CR> match(getline('.'), ' c$') >= 0 ? '<CR>' : '<CR>'
-
-" autocmd FileType rmd inoremap <buffer> <expr> <CR> match(getline('.'), ' c$') >= 0 ? :call DplyrSnippet() : '<CR>'
-" autocmd FileType rmd inoremap <buffer> <expr> <CR> match(getline('.'), ' c$') >= 0 ? '<CR><Esc>:call DplyrSnippet()<CR><CR>' : '<CR>'
-" autocmd FileType rmd inoremap <buffer> <CR> <ESC>:call DplyrSnippet()<CR>
-
-" autocmd FileType rmd inoremap <buffer> <CR> y:call DplyrSnippet()<CR>
-
-" vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 
 
