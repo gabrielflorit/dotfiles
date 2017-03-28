@@ -8,10 +8,14 @@ call plug#begin()
 
 " MISCELLANEOUS
 " -----------------------------------------------
+" git
+Plug 'tpope/vim-fugitive'
 " R plugin
 Plug 'jalvesaq/Nvim-R'
 " file system explorer
 Plug 'tpope/vim-vinegar'
+" buffer closing utility
+Plug 'moll/vim-bbye'
 
 
 
@@ -108,19 +112,23 @@ let g:fzf_filemru_colors = {}
 " FUNCTIONS
 " -----------------------------------------------
 
-function! DplyrSnippet()
+function! DplyrChains()
 
-	" enforce good habits
-	execute '.s/ +$/ wrong/e'
-	execute '.s/ %>%$/ wrong/e'
+	let line = getline('.')
 
-	" swap c at end of line with %>%
-	execute '.s/ c$/ %>%/e'
-
-	" swap p at end of line with +
-	execute '.s/ p$/ +/e'
+	if match(line, ' c$') > 0
+		call setline('.', substitute(line, ' c$', ' %>%', 'e'))
+		execute 'normal! $'
+	endif
 
 endfunction
+
+	" " enforce good habits
+	" execute '.s/ +$/ wrong/e'
+	" execute '.s/ %>%$/ wrong/e'
+	" " swap c/p at end of line with %>%/+
+	" execute '.s/ c$/ %>%/e'
+	" execute '.s/ p$/ +/e'
 
 function! DefaultWorkspace()
 
@@ -141,8 +149,17 @@ autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 autocmd FileType rmd setlocal commentstring=#\ %s
 
 " avoid typing %>% and +
-autocmd FileType rmd inoremap <buffer> <CR> <ESC>:call DplyrSnippet()<CR>o
+inoremap <CR> <C-O>:call DplyrChains()<CR><CR>
 
+" autocmd FileType rmd inoremap <buffer> <expr> <CR> match(getline('.'), ' c$') >= 0 ? '<CR>' : '<CR>'
+
+" autocmd FileType rmd inoremap <buffer> <expr> <CR> match(getline('.'), ' c$') >= 0 ? :call DplyrSnippet() : '<CR>'
+" autocmd FileType rmd inoremap <buffer> <expr> <CR> match(getline('.'), ' c$') >= 0 ? '<CR><Esc>:call DplyrSnippet()<CR><CR>' : '<CR>'
+" autocmd FileType rmd inoremap <buffer> <CR> <ESC>:call DplyrSnippet()<CR>
+
+" autocmd FileType rmd inoremap <buffer> <CR> y:call DplyrSnippet()<CR>
+
+" vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 
 
@@ -202,7 +219,10 @@ command! -register DefaultWorkspace call DefaultWorkspace()
 " -----------------------------------------------
 
 " remap leader to comma
-let mapleader=','
+let mapleader = ','
+
+" remap local leader to space
+let maplocalleader = ' '
 
 " allow quit via single keypress (Q)
 map Q :qa<CR>
@@ -250,6 +270,9 @@ nnoremap <leader>v :e $MYVIMRC<CR>
 " ,w -> save
 nnoremap <leader>w :w<CR>
 
+" ,q -> close buffer without closing window
+nnoremap <leader>q :Bdelete<CR>
+
 " tab -> next buffer
 nnoremap <Tab> :bnext<CR>
 
@@ -280,3 +303,6 @@ nnoremap <leader>r :%s//g<Left><Left>
 
 " ,t -> open terminal
 nnoremap <leader>t :terminal<CR>
+
+" ,gc -> git add and commit file
+nnoremap <leader>gc :Gcommit -v -q %:p<CR>
