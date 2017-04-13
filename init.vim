@@ -132,6 +132,16 @@ function! DefaultWorkspace()
 
 endfunction
 
+function! BlockLayout()
+
+	sp .
+	wincmd j
+	resize 10
+	term blockup
+
+endfunction
+command! -register BlockLayout call BlockLayout()
+
 
 
 
@@ -170,9 +180,6 @@ let R_assign = 0
 
 " enable automatic :nohlsearch
 let g:incsearch#auto_nohlsearch = 1
-
-" tell fzf to use ag. it will respect .gitignore
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 
 

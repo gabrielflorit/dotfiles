@@ -34,7 +34,9 @@ alias bi='brew install'
 alias vim='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultWorkspace'
 alias vimr='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
 alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace'
-# alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultLayout'
+alias vb='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace -c BlockLayout'
+
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Allow yarn globals to be executable
 export PATH="$(yarn global bin):$PATH"
@@ -43,5 +45,8 @@ export PATH="$(yarn global bin):$PATH"
 export GOPATH=$HOME/.go
 export GOROOT=/usr/local/Cellar/go@1.7/1.7.5/libexec/
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# AWS
+export PATH=~/.local/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
