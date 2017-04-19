@@ -132,6 +132,14 @@ function! DefaultWorkspace()
 
 endfunction
 
+function RLayout()
+
+	normal \ rf
+	normal \ ro
+	wincmd h
+
+endfunction
+
 function! BlockLayout()
 
 	sp .
@@ -140,6 +148,8 @@ function! BlockLayout()
 	term blockup
 
 endfunction
+
+command! -register RLayout call RLayout()
 command! -register BlockLayout call BlockLayout()
 
 
