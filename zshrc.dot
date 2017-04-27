@@ -34,6 +34,7 @@ alias bi='brew install'
 alias vim='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultWorkspace'
 alias vr='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c RLayout'
 alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace'
+alias v2='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . -c DefaultWorkspace'
 alias vb='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace -c BlockLayout'
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
