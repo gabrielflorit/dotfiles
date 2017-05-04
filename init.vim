@@ -40,6 +40,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'ntpeters/vim-better-whitespace'
 " color scheme
 Plug 'mhartington/oceanic-next'
+" show git gutters, stage hunks
+Plug 'airblade/vim-gitgutter'
 
 
 
@@ -105,6 +107,10 @@ highlight TermCursor ctermfg=red guifg=red
 
 " disable mru colors
 let g:fzf_filemru_colors = {}
+
+set ruler
+
+set statusline=%<%f\ %h%m%r%{fugitive#head()}%=%-14.(%l,%c%V%)\ %P
 
 
 
@@ -181,6 +187,14 @@ set inccommand=nosplit
 
 " disable automatic <- insertion in R
 let R_assign = 0
+
+" run checktime to force nvim to autoread buffers
+set autoread
+augroup improved_autoread
+  autocmd!
+  autocmd FocusGained * silent! checktime
+  autocmd BufEnter * silent! checktime
+augroup end
 
 
 
@@ -310,3 +324,6 @@ nnoremap <leader>t :terminal<CR>
 
 " ,gc -> git add and commit file
 nnoremap <leader>gc :Gcommit -v -q %:p<CR>
+
+" improved ctrl-z
+noremap <c-z> :suspend<cr>:silent! checktime<cr>
