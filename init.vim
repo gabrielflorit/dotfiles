@@ -40,8 +40,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'ntpeters/vim-better-whitespace'
 " color scheme
 Plug 'mhartington/oceanic-next'
-" show git gutters, stage hunks
-Plug 'airblade/vim-gitgutter'
 
 
 
