@@ -109,12 +109,19 @@ set laststatus=2
 
 " create statusline
 set statusline=
-set statusline+=%{fugitive#head()}
+" show git branch, e.g. [master], otherwise show empty string
+set statusline+=%{strlen(fugitive#head())?'['.fugitive#head().']':''}
+" display filename
 set statusline+=\ %f
+" if the file has been modified, display a +
 set statusline+=%{&modified?'\ +':''}
+" switch to the right-hand items
 set statusline+=%=
+" if this is a modifiable file, display indentation settings
 set statusline+=%(\ %{&modifiable?SleuthIndicator():''}%)
+" display current line number
 set statusline+=\ %l
+" display current line percentage
 set statusline+=\ %p%%
 
 
