@@ -105,6 +105,9 @@ highlight TermCursor ctermfg=red guifg=red
 " disable mru colors
 let g:fzf_filemru_colors = {}
 
+" tab settings
+set tabstop=2
+
 " always show statusline
 set laststatus=2
 
@@ -205,9 +208,9 @@ let R_assign = 0
 " run checktime to force nvim to autoread buffers
 set autoread
 augroup improved_autoread
-  autocmd!
-  autocmd FocusGained * silent! checktime
-  autocmd BufEnter * silent! checktime
+	autocmd!
+	autocmd FocusGained * silent! checktime
+	autocmd BufEnter * silent! checktime
 augroup end
 
 
@@ -230,8 +233,8 @@ let g:deoplete#enable_at_startup = 1
 
 " Disable default snippets
 let g:neosnippet#disable_runtime_snippets = {
-			\   '_' : 1,
-			\ }
+	\ '_' : 1,
+	\ }
 
 " Use custom snippets
 let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
@@ -310,8 +313,8 @@ nnoremap <leader>ne :NeoSnippetEdit<CR>
 " Otherwise if there is an autocompletion, use it.
 " Otherwise use tab.
 imap <expr><tab> neosnippet#expandable()
-			\ ? "\<Plug>(neosnippet_expand_or_jump)"
-			\ : (pumvisible() ? "\<C-n>" : "\<tab>")
+	\ ? "\<Plug>(neosnippet_expand_or_jump)"
+	\ : (pumvisible() ? "\<C-n>" : "\<tab>")
 
 " esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
