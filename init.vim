@@ -105,6 +105,7 @@ highlight TermCursor ctermfg=red guifg=red
 " disable mru colors
 let g:fzf_filemru_colors = {}
 
+" always show statusline
 set laststatus=2
 
 " create statusline
