@@ -30,6 +30,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " complementary pairs
 Plug 'tpope/vim-unimpaired'
+" automatically detect indentation settings
+Plug 'tpope/vim-sleuth'
 
 
 
@@ -97,18 +99,23 @@ set termguicolors
 set background=dark
 colorscheme OceanicNext
 
-" tab settings
-set tabstop=2 shiftwidth=2
-
 " color cursor red in terminal only
 highlight TermCursor ctermfg=red guifg=red
 
 " disable mru colors
 let g:fzf_filemru_colors = {}
 
-set ruler
+set laststatus=2
 
-set statusline=%<%f\ %h%m%r%{fugitive#head()}%=%-14.(%l,%c%V%)\ %P
+" create statusline
+set statusline=
+set statusline+=%{fugitive#head()}
+set statusline+=\ %f
+set statusline+=%{&modified?'\ +':''}
+set statusline+=%=
+set statusline+=%(\ %{&modifiable?SleuthIndicator():''}%)
+set statusline+=\ %l
+set statusline+=\ %p%%
 
 
 
@@ -136,7 +143,7 @@ function! DefaultWorkspace()
 
 endfunction
 
-function RLayout()
+function! RLayout()
 
 	normal \ rf
 	normal \ ro
@@ -155,6 +162,7 @@ endfunction
 
 command! -register RLayout call RLayout()
 command! -register BlockLayout call BlockLayout()
+command! -register DefaultWorkspace call DefaultWorkspace()
 
 
 
@@ -219,14 +227,6 @@ let g:neosnippet#disable_runtime_snippets = {
 
 " Use custom snippets
 let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
-
-
-
-
-" COMMANDS
-" -----------------------------------------------
-
-command! -register DefaultWorkspace call DefaultWorkspace()
 
 
 
@@ -315,7 +315,7 @@ nnoremap <leader><leader> :FilesMru<CR>
 nnoremap <leader>f :Ag<CR>
 
 " ,r -> highlight search and replace matches
-nnoremap <leader>r :%s//g<Left><Left>
+nnoremap <leader>r :%s/\v/gc<Left><Left>
 
 " ,t -> open terminal
 nnoremap <leader>t :terminal<CR>
