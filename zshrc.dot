@@ -37,6 +37,8 @@ alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace'
 alias v2='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . -c DefaultWorkspace'
 alias vb='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace -c BlockLayout'
 
+alias serve='python -m SimpleHTTPServer 3000'
+
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Allow yarn globals to be executable
