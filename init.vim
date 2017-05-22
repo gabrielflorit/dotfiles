@@ -32,6 +32,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 " automatically detect indentation settings
 Plug 'tpope/vim-sleuth'
+" lint as you type
+Plug 'w0rp/ale'
 
 
 
@@ -213,6 +215,15 @@ augroup improved_autoread
 	autocmd BufEnter * silent! checktime
 augroup end
 
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+
 
 
 
@@ -326,7 +337,7 @@ nnoremap <leader><leader> :FilesMru<CR>
 nnoremap <leader>f :Ag<CR>
 
 " ,r -> highlight search and replace matches
-nnoremap <leader>r :%s/\v/gc<Left><Left>
+nnoremap <leader>r :%s//gc<Left><Left>
 
 " ,t -> open terminal
 nnoremap <leader>t :terminal<CR>
