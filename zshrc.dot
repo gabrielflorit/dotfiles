@@ -31,14 +31,16 @@ alias gc='git checkout'
 alias bi='brew install'
 
 # Neovim
-alias vim='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c DefaultWorkspace'
-alias vr='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -c RLayout'
-alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace'
-alias v2='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . -c DefaultWorkspace'
-alias vb='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim -O . . . -c DefaultWorkspace -c BlockLayout'
+alias vim='nvim -c DefaultWorkspace'
+alias vr='nvim -c RLayout'
+alias v='nvim -O . . . -c DefaultWorkspace'
+alias v2='nvim -O . . -c DefaultWorkspace'
+alias vb='nvim -O . . . -c DefaultWorkspace -c BlockLayout'
 
+# Python
 alias serve='python -m SimpleHTTPServer 3000'
 
+# FZF
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Allow yarn globals to be executable
@@ -53,3 +55,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=~/.local/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

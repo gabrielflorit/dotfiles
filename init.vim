@@ -75,8 +75,8 @@ Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
 Plug 'gabrielflorit/quick-scope'
 " make searching across lines easier/faster
-Plug 'justinmk/vim-sneak'
-" better asterisk search
+Plug 'easymotion/vim-easymotion'
+"nd better asterisk search
 Plug 'haya14busa/vim-asterisk'
 " better incsearch
 Plug 'haya14busa/incsearch.vim'
@@ -150,6 +150,18 @@ function! DplyrChains()
 
 endfunction
 
+function! Sasser()
+
+	let line = getline('.')
+
+	if match(line, ' $') > 0
+		call setline('.', substitute(line, ' $', ' {', 'e'))
+		call setline(line('.') + 1, '}')
+		execute 'normal! $'
+	endif
+
+endfunction
+
 function! DefaultWorkspace()
 
 	autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
@@ -159,8 +171,9 @@ endfunction
 function! RLayout()
 
 	normal \ rf
-	normal \ ro
-	wincmd h
+	normal G
+	" normal \ ro
+	" wincmd h
 
 endfunction
 
@@ -192,11 +205,15 @@ autocmd FileType rmd setlocal commentstring=#\ %s
 " avoid typing %>% and +
 autocmd FileType rmd inoremap <buffer> <CR> <C-O>:call DplyrChains()<CR><CR>
 
+autocmd FileType scss inoremap <buffer> <CR> <C-O>:call Sasser()<CR><CR>
+
 
 
 
 " EDITING
 " -----------------------------------------------
+
+set mouse=a
 
 " use the general register for yanking
 set clipboard+=unnamedplus
@@ -215,14 +232,19 @@ augroup improved_autoread
 	autocmd BufEnter * silent! checktime
 augroup end
 
+" tell ALE what linters to use
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
-
+" only run ALE on save
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+
+" " don't use the loclist
+" let g:ale_set_loclist = 0
+" " instead, use the quickfix
+" let g:ale_set_quickfix = 1
+" " and leave it open
+" let g:ale_open_list = 1
 
 
 
@@ -337,7 +359,7 @@ nnoremap <leader><leader> :FilesMru<CR>
 nnoremap <leader>f :Ag<CR>
 
 " ,r -> highlight search and replace matches
-nnoremap <leader>r :%s//gc<Left><Left>
+nnoremap <leader>r :%s//gc<Left><Left><Left>
 
 " ,t -> open terminal
 nnoremap <leader>t :terminal<CR>
@@ -347,3 +369,10 @@ nnoremap <leader>gc :Gcommit -v -q %:p<CR>
 
 " improved ctrl-z
 noremap <c-z> :suspend<cr>:silent! checktime<cr>
+
+" use old easymotion leader
+map <Leader> <Plug>(easymotion-prefix)
+
+" enable two-character easymotion search
+nmap s <Plug>(easymotion-s2)
+
