@@ -170,10 +170,10 @@ endfunction
 
 function! RLayout()
 
-	normal \ rf
-	normal G
-	" normal \ ro
-	" wincmd h
+	silent! call StartR('R')
+	silent! call RObjBrowser()
+	wincmd h
+	call RmdNextChunk()
 
 endfunction
 
@@ -375,4 +375,3 @@ map <Leader> <Plug>(easymotion-prefix)
 
 " enable two-character easymotion search
 nmap s <Plug>(easymotion-s2)
-
