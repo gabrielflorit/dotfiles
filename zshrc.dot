@@ -7,8 +7,10 @@ if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
 fi
 
-# Enable python for neovim
-export PATH=/usr/local/share/python:$PATH
+# # Enable python for neovim
+# # This used to be on, but the latest brew says don't.
+# # So I'll leave it here but turn it off.
+# export PATH=/usr/local/share/python:$PATH
 
 # trash
 alias rm='trash'
@@ -36,6 +38,7 @@ alias vr='nvim -c RLayout'
 alias v='nvim -O . . . -c DefaultWorkspace'
 alias v2='nvim -O . . -c DefaultWorkspace'
 alias vb='nvim -O . . . -c DefaultWorkspace -c BlockLayout'
+alias vg='nvim -O . . . -c DefaultWorkspace -c GulpLayout'
 
 # Python
 alias serve='python -m SimpleHTTPServer 3000'
@@ -54,7 +57,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # AWS
 export PATH=~/.local/bin:$PATH
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

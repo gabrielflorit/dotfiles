@@ -1,4 +1,3 @@
-
 " LOAD PLUGINS
 " -----------------------------------------------
 call plug#begin()
@@ -30,10 +29,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " complementary pairs
 Plug 'tpope/vim-unimpaired'
-" automatically detect indentation settings
-Plug 'tpope/vim-sleuth'
 " lint as you type
 Plug 'w0rp/ale'
+Plug 'sbdchd/neoformat'
 
 
 
@@ -69,8 +67,9 @@ Plug 'Shougo/neosnippet.vim'
 " SEARCH
 " ------------------------
 " fzf vim commands
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" most-recently used files for fzf.vim
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" " most-recently used files for fzf.vim
 Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
 Plug 'gabrielflorit/quick-scope'
@@ -109,6 +108,8 @@ let g:fzf_filemru_colors = {}
 
 " tab settings
 set tabstop=2
+set expandtab
+set shiftwidth=2
 
 " always show statusline
 set laststatus=2
@@ -123,8 +124,6 @@ set statusline+=\ %f
 set statusline+=%{&modified?'\ +':''}
 " switch to the right-hand items
 set statusline+=%=
-" if this is a modifiable file, display indentation settings
-set statusline+=%(\ %{&modifiable?SleuthIndicator():''}%)
 " display current line number
 set statusline+=\ %l
 " display current line percentage
@@ -150,18 +149,6 @@ function! DplyrChains()
 
 endfunction
 
-function! Sasser()
-
-	let line = getline('.')
-
-	if match(line, ' $') > 0
-		call setline('.', substitute(line, ' $', ' {', 'e'))
-		call setline(line('.') + 1, '}')
-		execute 'normal! $'
-	endif
-
-endfunction
-
 function! DefaultWorkspace()
 
 	autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
@@ -177,6 +164,15 @@ function! RLayout()
 
 endfunction
 
+function! GulpLayout()
+
+	sp .
+	wincmd j
+	resize 10
+	term gulp
+
+endfunction
+
 function! BlockLayout()
 
 	sp .
@@ -188,6 +184,7 @@ endfunction
 
 command! -register RLayout call RLayout()
 command! -register BlockLayout call BlockLayout()
+command! -register GulpLayout call GulpLayout()
 command! -register DefaultWorkspace call DefaultWorkspace()
 
 
@@ -204,8 +201,6 @@ autocmd FileType rmd setlocal commentstring=#\ %s
 
 " avoid typing %>% and +
 autocmd FileType rmd inoremap <buffer> <CR> <C-O>:call DplyrChains()<CR><CR>
-
-autocmd FileType scss inoremap <buffer> <CR> <C-O>:call Sasser()<CR><CR>
 
 
 
@@ -366,6 +361,9 @@ nnoremap <leader>t :terminal<CR>
 
 " ,gc -> git add and commit file
 nnoremap <leader>gc :Gcommit -v -q %:p<CR>
+
+" ,gp -> git push
+nnoremap <leader>gp :Gpush<CR>
 
 " improved ctrl-z
 noremap <c-z> :suspend<cr>:silent! checktime<cr>
