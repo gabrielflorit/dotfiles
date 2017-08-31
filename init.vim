@@ -33,6 +33,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 Plug 'sbdchd/neoformat'
 
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'thinca/vim-textobj-function-javascript'
 
 
 
@@ -283,8 +286,8 @@ let maplocalleader = ' '
 map Q :qa<CR>
 
 " configure vim-asterisk
-map *  <Plug>(asterisk-z*)
-map #  <Plug>(asterisk-z#)
+map *   <Plug>(asterisk-z*)
+map #   <Plug>(asterisk-z#)
 map g*  <Plug>(asterisk-gz*)
 map g#  <Plug>(asterisk-gz#)
 
