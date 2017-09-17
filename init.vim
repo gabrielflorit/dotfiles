@@ -15,6 +15,8 @@ Plug 'jalvesaq/Nvim-R'
 Plug 'tpope/vim-vinegar'
 " buffer closing utility
 Plug 'moll/vim-bbye'
+" vim hardtime
+Plug 'takac/vim-hardtime'
 
 
 
@@ -32,10 +34,11 @@ Plug 'tpope/vim-unimpaired'
 " lint as you type
 Plug 'w0rp/ale'
 Plug 'sbdchd/neoformat'
-
+" text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'thinca/vim-textobj-function-javascript'
+
 
 
 
@@ -77,7 +80,7 @@ Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
 Plug 'gabrielflorit/quick-scope'
 " make searching across lines easier/faster
-Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 "nd better asterisk search
 Plug 'haya14busa/vim-asterisk'
 " better incsearch
@@ -95,6 +98,13 @@ call plug#end()
 
 " APPEARANCE
 " ----------------------------------------------
+
+" enable hardtime
+let g:hardtime_default_on = 0
+" make hardtime ignore the quickfix window
+let g:hardtime_ignore_quickfix = 1
+" customize hardtime keys
+let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 " use true colors
 set termguicolors
@@ -129,8 +139,8 @@ set statusline+=%{&modified?'\ +':''}
 set statusline+=%=
 " display current line number
 set statusline+=\ %l
-" display current line percentage
-set statusline+=\ %p%%
+" display current line column
+set statusline+=\ %c
 
 
 
@@ -139,50 +149,51 @@ set statusline+=\ %p%%
 " -----------------------------------------------
 
 function! DplyrChains()
-
 	let line = getline('.')
-
+  " c => %>%
 	if match(line, ' c$') > 0
 		call setline('.', substitute(line, ' c$', ' %>%', 'e'))
 		execute 'normal! $'
+  " c => +
 	elseif match(line, ' p$') > 0
 		call setline('.', substitute(line, ' p$', ' +', 'e'))
 		execute 'normal! $'
 	endif
+endfunction
 
+function! JsAbbreviationsSpace()
+	let line = getline('.')
+  " c => const
+	echom match(line, '^\s*c$')
+	if match(line, '^\s*c$') == 0
+		call setline('.', substitute(line, 'c$', 'const', 'e'))
+		execute 'normal! $'
+  endif
 endfunction
 
 function! DefaultWorkspace()
-
 	autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-
 endfunction
 
 function! RLayout()
-
 	silent! call StartR('R')
 	silent! call RObjBrowser()
 	wincmd h
 	call RmdNextChunk()
-
 endfunction
 
 function! GulpLayout()
-
 	sp .
 	wincmd j
 	resize 10
 	term gulp
-
 endfunction
 
 function! BlockLayout()
-
 	sp .
 	wincmd j
 	resize 10
 	term blockup
-
 endfunction
 
 command! -register RLayout call RLayout()
@@ -204,6 +215,8 @@ autocmd FileType rmd setlocal commentstring=#\ %s
 
 " avoid typing %>% and +
 autocmd FileType rmd inoremap <buffer> <CR> <C-O>:call DplyrChains()<CR><CR>
+
+autocmd FileType javascript inoremap <buffer> <space> <C-O>:call JsAbbreviationsSpace()<CR><space>
 
 
 
@@ -230,12 +243,12 @@ augroup improved_autoread
 	autocmd BufEnter * silent! checktime
 augroup end
 
-" tell ALE what linters to use
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
 " only run ALE on save
 let g:ale_lint_on_text_changed = 'never'
+" setup ALE to lint and fix with prettier_standard
+let g:ale_fixers = {'javascript': ['prettier_standard']}
+let g:ale_linters = {'javascript': ['standard']}
+let g:ale_fix_on_save = 1
 
 " " don't use the loclist
 " let g:ale_set_loclist = 0
@@ -243,6 +256,9 @@ let g:ale_lint_on_text_changed = 'never'
 " let g:ale_set_quickfix = 1
 " " and leave it open
 " let g:ale_open_list = 1
+
+" enable sneak to repeat by pressing s
+let g:sneak#s_next = 1
 
 
 
@@ -370,9 +386,3 @@ nnoremap <leader>gp :Gpush<CR>
 
 " improved ctrl-z
 noremap <c-z> :suspend<cr>:silent! checktime<cr>
-
-" use old easymotion leader
-map <Leader> <Plug>(easymotion-prefix)
-
-" enable two-character easymotion search
-nmap s <Plug>(easymotion-s2)
