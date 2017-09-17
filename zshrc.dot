@@ -21,6 +21,10 @@ alias i='term-img'
 # bash
 alias l='ls -ltG'
 
+# NPM
+alias ni='npm i'
+alias nis='npm install --save'
+
 # Git
 alias ga='git add'
 alias gd='git diff'
@@ -56,6 +60,11 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # AWS
 export PATH=~/.local/bin:$PATH
+
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Documents/dev
+# export VIRTUALENVWRAPPER_SCRIPT=/Users/floritg/Library/Python/2.7/bin/virtualenvwrapper.sh
+# source /Users/floritg/Library/Python/2.7/bin/virtualenvwrapper_lazy.sh
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
