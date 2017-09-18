@@ -243,12 +243,21 @@ augroup improved_autoread
 	autocmd BufEnter * silent! checktime
 augroup end
 
-" only run ALE on save
+" don't run ALE lint continuously
 let g:ale_lint_on_text_changed = 'never'
+
+" don't run ALE lint on enter
+let g:ale_lint_on_enter = 0
+
+" dont' run ALE fix on save
+let g:ale_fix_on_save = 0
+
+" run ALE lint on save
+let g:ale_lint_on_save = 1
+
 " setup ALE to lint and fix with prettier_standard
-let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_linters = {'javascript': ['standard']}
-let g:ale_fix_on_save = 1
+let g:ale_fixers = {'javascript': ['prettier_standard']}
 
 " " don't use the loclist
 " let g:ale_set_loclist = 0
@@ -386,3 +395,7 @@ nnoremap <leader>gp :Gpush<CR>
 
 " improved ctrl-z
 noremap <c-z> :suspend<cr>:silent! checktime<cr>
+
+" ,l -> lint
+nnoremap <leader>al :ALELint<CR>
+nnoremap <leader>af :ALEFix<CR>
