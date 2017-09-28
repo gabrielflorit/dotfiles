@@ -142,6 +142,9 @@ set statusline+=\ %l
 " display current line column
 set statusline+=\ %c
 
+" move R object browser to the left
+let R_objbr_place="script,left"
+
 
 
 
@@ -168,7 +171,8 @@ endfunction
 function! RLayout()
 	silent! call StartR('R')
 	silent! call RObjBrowser()
-	wincmd h
+	wincmd l
+  vertical resize 80
 	call RmdNextChunk()
 endfunction
 
