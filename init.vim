@@ -161,16 +161,6 @@ function! DplyrChains()
 	endif
 endfunction
 
-function! JsAbbreviationsSpace()
-	let line = getline('.')
-  " c => const
-	echom match(line, '^\s*c$')
-	if match(line, '^\s*c$') == 0
-		call setline('.', substitute(line, 'c$', 'const', 'e'))
-		execute 'normal! $'
-  endif
-endfunction
-
 function! DefaultWorkspace()
 	autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 endfunction
@@ -215,8 +205,6 @@ autocmd FileType rmd setlocal commentstring=#\ %s
 
 " avoid typing %>% and +
 autocmd FileType rmd inoremap <buffer> <CR> <C-O>:call DplyrChains()<CR><CR>
-
-autocmd FileType javascript inoremap <buffer> <space> <C-O>:call JsAbbreviationsSpace()<CR><space>
 
 
 
