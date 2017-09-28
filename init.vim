@@ -152,42 +152,42 @@ let R_objbr_place="script,left"
 " -----------------------------------------------
 
 function! DplyrChains()
-	let line = getline('.')
+  let line = getline('.')
   " c => %>%
-	if match(line, ' c$') > 0
-		call setline('.', substitute(line, ' c$', ' %>%', 'e'))
-		execute 'normal! $'
-  " c => +
-	elseif match(line, ' p$') > 0
-		call setline('.', substitute(line, ' p$', ' +', 'e'))
-		execute 'normal! $'
-	endif
+  if match(line, ' c$') > 0
+    call setline('.', substitute(line, ' c$', ' %>%', 'e'))
+    execute 'normal! $'
+    " c => +
+  elseif match(line, ' p$') > 0
+    call setline('.', substitute(line, ' p$', ' +', 'e'))
+    execute 'normal! $'
+  endif
 endfunction
 
 function! DefaultWorkspace()
-	autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 endfunction
 
 function! RLayout()
-	silent! call StartR('R')
-	silent! call RObjBrowser()
-	wincmd l
+  silent! call StartR('R')
+  silent! call RObjBrowser()
+  wincmd l
   vertical resize 80
-	call RmdNextChunk()
+  call RmdNextChunk()
 endfunction
 
 function! GulpLayout()
-	sp .
-	wincmd j
-	resize 10
-	term gulp
+  sp .
+  wincmd j
+  resize 10
+  term gulp
 endfunction
 
 function! BlockLayout()
-	sp .
-	wincmd j
-	resize 10
-	term blockup
+  sp .
+  wincmd j
+  resize 10
+  term blockup
 endfunction
 
 command! -register RLayout call RLayout()
@@ -230,9 +230,9 @@ let R_assign = 0
 " run checktime to force nvim to autoread buffers
 set autoread
 augroup improved_autoread
-	autocmd!
-	autocmd FocusGained * silent! checktime
-	autocmd BufEnter * silent! checktime
+  autocmd!
+  autocmd FocusGained * silent! checktime
+  autocmd BufEnter * silent! checktime
 augroup end
 
 " don't run ALE lint continuously
@@ -281,8 +281,8 @@ let g:deoplete#enable_at_startup = 1
 
 " Disable default snippets
 let g:neosnippet#disable_runtime_snippets = {
-	\ '_' : 1,
-	\ }
+  \ '_' : 1,
+  \ }
 
 " Use custom snippets
 let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
@@ -361,8 +361,8 @@ nnoremap <leader>ne :NeoSnippetEdit<CR>
 " Otherwise if there is an autocompletion, use it.
 " Otherwise use tab.
 imap <expr><tab> neosnippet#expandable()
-	\ ? "\<Plug>(neosnippet_expand_or_jump)"
-	\ : (pumvisible() ? "\<C-n>" : "\<tab>")
+  \ ? "\<Plug>(neosnippet_expand_or_jump)"
+  \ : (pumvisible() ? "\<C-n>" : "\<tab>")
 
 " esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
