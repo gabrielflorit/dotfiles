@@ -11,12 +11,17 @@ call plug#begin()
 Plug 'tpope/vim-fugitive'
 " R plugin
 Plug 'jalvesaq/Nvim-R'
-" file system explorer
-Plug 'tpope/vim-vinegar'
 " buffer closing utility
 Plug 'moll/vim-bbye'
 " vim hardtime
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
+" undo history visualizer
+" Plug 'mbbill/undotree'
+
+" directory viewer
+Plug 'justinmk/vim-dirvish'
+" terminal utilities
+Plug 'kassio/neoterm'
 
 
 
@@ -33,7 +38,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 " lint as you type
 Plug 'w0rp/ale'
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 " text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -145,6 +150,12 @@ set statusline+=\ %c
 " move R object browser to the left
 let R_objbr_place="script,left"
 
+" hide .files
+let g:dirvish_mode=':silent keeppatterns g@\v/\.[^\/]+/?$@d _'
+
+" make neoterm use relative instead of absolute paths
+let g:neoterm_use_relative_path=1
+
 
 
 
@@ -188,6 +199,11 @@ function! BlockLayout()
   wincmd j
   resize 10
   term blockup
+endfunction
+
+function! RunBuffer()
+  silent! call neoterm#clear()
+  silent! call neoterm#do('node %')
 endfunction
 
 command! -register RLayout call RLayout()
@@ -391,3 +407,6 @@ noremap <c-z> :suspend<cr>:silent! checktime<cr>
 " ,l -> lint
 nnoremap <leader>al :ALELint<CR>
 nnoremap <leader>af :ALEFix<CR>
+
+" ,tt -> run buffer in node
+nnoremap <silent> <leader>tt :call RunBuffer()<CR>
