@@ -13,13 +13,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'jalvesaq/Nvim-R'
 " buffer closing utility
 Plug 'moll/vim-bbye'
-" vim hardtime
-" Plug 'takac/vim-hardtime'
-" undo history visualizer
-" Plug 'mbbill/undotree'
-
 " directory viewer
-Plug 'justinmk/vim-dirvish'
+Plug 'tpope/vim-vinegar'
 " terminal utilities
 Plug 'kassio/neoterm'
 
@@ -83,7 +78,7 @@ Plug 'junegunn/fzf.vim'
 " " most-recently used files for fzf.vim
 Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
-Plug 'gabrielflorit/quick-scope'
+" Plug 'bradford-smith94/quick-scope'
 " make searching across lines easier/faster
 Plug 'justinmk/vim-sneak'
 "nd better asterisk search
@@ -155,6 +150,7 @@ let g:dirvish_mode=':silent keeppatterns g@\v/\.[^\/]+/?$@d _'
 
 " make neoterm use relative instead of absolute paths
 let g:neoterm_use_relative_path=1
+let g:neoterm_position='vertical'
 
 
 

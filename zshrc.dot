@@ -61,6 +61,8 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # AWS
 export PATH=~/.local/bin:$PATH
 
+alias rts='aws s3 cp ~/Documents/dev/analysis/ s3://wapo-graphics-r/gabriel/ --recursive --exclude "*" --include "*.html"'
+
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=$HOME/Documents/dev
 # export VIRTUALENVWRAPPER_SCRIPT=/Users/floritg/Library/Python/2.7/bin/virtualenvwrapper.sh
