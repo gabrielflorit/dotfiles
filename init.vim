@@ -78,7 +78,7 @@ Plug 'junegunn/fzf.vim'
 " " most-recently used files for fzf.vim
 Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
-" Plug 'bradford-smith94/quick-scope'
+Plug 'bradford-smith94/quick-scope'
 " make searching across lines easier/faster
 Plug 'justinmk/vim-sneak'
 "nd better asterisk search
