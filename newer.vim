@@ -15,7 +15,6 @@ Plug 'jalvesaq/Nvim-R'
 Plug 'tpope/vim-vinegar'
 " terminal utilities
 Plug 'kassio/neoterm'
-Plug 'galooshi/vim-import-js'
 
 
 
@@ -32,7 +31,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 " lint as you type
 Plug 'w0rp/ale'
-" Plug 'sbdchd/neoformat'
+Plug 'chrisbra/NrrwRgn'
 
 
 
@@ -43,6 +42,8 @@ Plug 'w0rp/ale'
 Plug 'ntpeters/vim-better-whitespace'
 " color scheme
 Plug 'mhartington/oceanic-next'
+" colorize css colors
+Plug 'ap/vim-css-color'
 
 
 
@@ -93,6 +94,8 @@ call plug#end()
 
 " APPEARANCE
 " ----------------------------------------------
+
+let g:python3_host_prog = '/Users/floritg/.pyenv/versions/neovim3/bin/python'
 
 " use true colors
 set termguicolors
@@ -157,7 +160,10 @@ function! DplyrChains()
 endfunction
 
 function! DefaultWorkspace()
+  " when moving to a terminal buffer, switch to insert mode
   autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+  " when opening a terminal, switch to insert mode
+  autocmd TermOpen * startinsert
 endfunction
 
 function! RLayout()
@@ -247,6 +253,13 @@ let g:ale_lint_on_save = 1
 " setup ALE to lint and fix with prettier_standard
 let g:ale_linters = {'javascript': ['standard']}
 let g:ale_fixers = {'javascript': ['prettier_standard']}
+
+" " don't use the loclist
+" let g:ale_set_loclist = 0
+" " instead, use the quickfix
+" let g:ale_set_quickfix = 1
+" " and leave it open
+" let g:ale_open_list = 1
 
 " enable sneak to repeat by pressing s
 let g:sneak#s_next = 1
