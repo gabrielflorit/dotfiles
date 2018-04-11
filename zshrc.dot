@@ -38,14 +38,14 @@ alias bi='brew install'
 
 # Neovim
 alias vim='nvim -c DefaultWorkspace'
-alias vr='nvim -c RLayout'
-alias v='nvim -O . . . -c DefaultWorkspace'
-alias v2='nvim -O . . -c DefaultWorkspace'
-alias vb='nvim -O . . . -c DefaultWorkspace -c BlockLayout'
-alias vg='nvim -O . . . -c DefaultWorkspace -c GulpLayout'
+alias   v='nvim -O . . . -c DefaultWorkspace'
+alias  v2='nvim -O . . -c DefaultWorkspace'
+alias  vr='nvim -c RLayout'
+alias  vb='nvim -O . . . -c DefaultWorkspace -c BlockLayout'
+alias  vg='nvim -O . . . -c DefaultWorkspace -c GulpLayout'
 
 # Python
-alias serve='python -m SimpleHTTPServer 3000'
+# alias serve='python -m SimpleHTTPServer 3000'
 
 # FZF
 export FZF_DEFAULT_COMMAND='ag -g ""'

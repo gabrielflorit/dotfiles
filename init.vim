@@ -15,7 +15,7 @@ Plug 'jalvesaq/Nvim-R'
 Plug 'tpope/vim-vinegar'
 " terminal utilities
 Plug 'kassio/neoterm'
-Plug 'galooshi/vim-import-js'
+Plug 'zhou13/vim-easyescape'
 
 
 
@@ -32,7 +32,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 " lint as you type
 Plug 'w0rp/ale'
-" Plug 'sbdchd/neoformat'
+Plug 'kana/vim-textobj-user'
 
 
 
@@ -43,6 +43,8 @@ Plug 'w0rp/ale'
 Plug 'ntpeters/vim-better-whitespace'
 " color scheme
 Plug 'mhartington/oceanic-next'
+" colorize css colors
+Plug 'ap/vim-css-color'
 
 
 
@@ -137,6 +139,10 @@ let R_objbr_place="script,left"
 let g:neoterm_use_relative_path=1
 let g:neoterm_position='vertical'
 
+" show tab characters
+set list
+set listchars=tab:>-
+
 
 
 
@@ -144,47 +150,51 @@ let g:neoterm_position='vertical'
 " -----------------------------------------------
 
 function! DplyrChains()
-  let line = getline('.')
-  " c => %>%
-  if match(line, ' c$') > 0
-    call setline('.', substitute(line, ' c$', ' %>%', 'e'))
-    execute 'normal! $'
-    " c => +
-  elseif match(line, ' p$') > 0
-    call setline('.', substitute(line, ' p$', ' +', 'e'))
-    execute 'normal! $'
-  endif
+let line = getline('.')
+" c => %>%
+if match(line, ' c$') > 0
+  call setline('.', substitute(line, ' c$', ' %>%', 'e'))
+  execute 'normal! $'
+  " c => +
+elseif match(line, ' p$') > 0
+  call setline('.', substitute(line, ' p$', ' +', 'e'))
+  execute 'normal! $'
+endif
 endfunction
 
 function! DefaultWorkspace()
-  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" when moving to a terminal buffer, switch to insert mode
+autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" when opening a terminal, switch to insert mode
+autocmd TermOpen * startinsert
 endfunction
 
 function! RLayout()
-  silent! call StartR('R')
-  silent! call RObjBrowser()
-  wincmd l
-  vertical resize 80
-  call RmdNextChunk()
+silent! call StartR('R')
+silent! call RObjBrowser()
+vertical resize 60
+wincmd l
+vertical resize 80
+call RmdNextChunk()
 endfunction
 
 function! GulpLayout()
-  sp .
-  wincmd j
-  resize 10
-  term gulp
+sp .
+wincmd j
+resize 10
+term gulp
 endfunction
 
 function! BlockLayout()
-  sp .
-  wincmd j
-  resize 10
-  term blockup
+sp .
+wincmd j
+resize 10
+term blockup
 endfunction
 
 function! RunBuffer()
-  silent! call neoterm#clear()
-  silent! call neoterm#do('node %')
+silent! call neoterm#clear()
+silent! call neoterm#do('node %')
 endfunction
 
 command! -register RLayout call RLayout()
@@ -192,6 +202,20 @@ command! -register BlockLayout call BlockLayout()
 command! -register GulpLayout call GulpLayout()
 command! -register DefaultWorkspace call DefaultWorkspace()
 
+call textobj#user#plugin('chunkblock', {
+\   '-': {
+\     'select-a-function': 'ChunkBlock',
+\     'select-a': 'ac',
+\   },
+\ })
+
+function! ChunkBlock()
+normal! ^
+let head_pos = getpos('.')
+normal! $%$
+let tail_pos = getpos('.')
+return ['v', head_pos, tail_pos]
+endfunction
 
 
 
@@ -227,19 +251,19 @@ let R_assign = 0
 " run checktime to force nvim to autoread buffers
 set autoread
 augroup improved_autoread
-  autocmd!
-  autocmd FocusGained * silent! checktime
-  autocmd BufEnter * silent! checktime
+autocmd!
+autocmd FocusGained * silent! checktime
+autocmd BufEnter * silent! checktime
 augroup end
 
 " don't run ALE lint continuously
 let g:ale_lint_on_text_changed = 'never'
 
-" don't run ALE lint on enter
-let g:ale_lint_on_enter = 0
+" run ALE lint on enter
+let g:ale_lint_on_enter = 1
 
-" dont' run ALE fix on save
-let g:ale_fix_on_save = 0
+" run ALE fix on save
+let g:ale_fix_on_save = 1
 
 " run ALE lint on save
 let g:ale_lint_on_save = 1
@@ -250,6 +274,9 @@ let g:ale_fixers = {'javascript': ['prettier_standard']}
 
 " enable sneak to repeat by pressing s
 let g:sneak#s_next = 1
+
+let g:easyescape_chars = { "j": 1, "k": 1 }
+let g:easyescape_timeout = 100
 
 
 
@@ -271,17 +298,25 @@ let g:deoplete#enable_at_startup = 1
 
 " Disable default snippets
 let g:neosnippet#disable_runtime_snippets = {
-  \ '_' : 1,
-  \ }
+\ '_' : 1,
+\ }
 
 " Use custom snippets
 let g:neosnippet#snippets_directory='~/Documents/other/neosnippets'
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 
 
 
 " REMAPS
 " -----------------------------------------------
+
+cnoremap jk <ESC>
+cnoremap kj <ESC>
 
 " remap leader to comma
 let mapleader = ','
@@ -311,14 +346,18 @@ map N  <Plug>(incsearch-nohl-N)
 tnoremap <Esc> <C-\><C-n>
 
 " use ctrl-[hjkl] to select the active split
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+tnoremap <S-h> <C-\><C-n><C-w>h
+tnoremap <S-j> <C-\><C-n><C-w>j
+tnoremap <S-k> <C-\><C-n><C-w>k
+tnoremap <S-l> <C-\><C-n><C-w>l
+nnoremap <S-h> <C-w>h
+nnoremap <S-j> <C-w>j
+nnoremap <S-k> <C-w>k
+nnoremap <S-l> <C-w>l
+
+nnoremap <leader>j :join<CR>
+
+nnoremap <leader>x <c-w>q
 
 " ,cp -> close preview
 nnoremap <leader>pc :pc<CR>
@@ -344,12 +383,13 @@ nnoremap <S-Tab> :bprevious<CR>
 " ,ne -> edit this filetype's snippets
 nnoremap <leader>ne :NeoSnippetEdit<CR>
 
-" tab -> If there is a snippet, expand it.
-" Otherwise if there is an autocompletion, use it.
-" Otherwise use tab.
-imap <expr><tab> neosnippet#expandable()
+imap <expr><tab> neosnippet#expandable_or_jumpable()
   \ ? "\<Plug>(neosnippet_expand_or_jump)"
   \ : (pumvisible() ? "\<C-n>" : "\<tab>")
+
+" imap <expr><tab> neosnippet#expandable()
+"   \ ? "\<Plug>(neosnippet_expand_or_jump)"
+"   \ : (pumvisible() ? "\<C-n>" : "\<tab>")
 
 " esc esc -> clear search highlight
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
