@@ -7,10 +7,10 @@ call plug#begin()
 
 " MISCELLANEOUS
 " -----------------------------------------------
-" git
-Plug 'tpope/vim-fugitive'
-" R plugin
-Plug 'jalvesaq/Nvim-R'
+" " git
+" Plug 'tpope/vim-fugitive'
+" " R plugin
+" Plug 'jalvesaq/Nvim-R'
 " directory viewer
 Plug 'tpope/vim-vinegar'
 " terminal utilities
@@ -43,8 +43,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'ntpeters/vim-better-whitespace'
 " color scheme
 Plug 'mhartington/oceanic-next'
-" colorize css colors
-Plug 'ap/vim-css-color'
+" " colorize css colors
+" Plug 'ap/vim-css-color'
 
 
 
@@ -53,6 +53,7 @@ Plug 'ap/vim-css-color'
 " ------------------------
 " Stylus syntax highlighting
 Plug 'wavded/vim-stylus'
+" Plug 'othree/yajs.vim'
 
 
 
@@ -72,13 +73,13 @@ Plug 'Shougo/neosnippet.vim'
 " fzf vim commands
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" " most-recently used files for fzf.vim
+" most-recently used files for fzf.vim
 Plug 'tweekmonster/fzf-filemru'
 " highlight which characters to target for f, F and family
-Plug 'bradford-smith94/quick-scope'
+Plug 'unblevable/quick-scope'
 " make searching across lines easier/faster
 Plug 'justinmk/vim-sneak'
-"nd better asterisk search
+" Better asterisk search
 Plug 'haya14busa/vim-asterisk'
 " better incsearch
 Plug 'haya14busa/incsearch.vim'
@@ -117,27 +118,26 @@ set shiftwidth=2
 " always show statusline
 set laststatus=2
 
-" create statusline
-set statusline=
-" show git branch, e.g. [master], otherwise show empty string
-set statusline+=%{strlen(fugitive#head())?'['.fugitive#head().']':''}
-" display filename
-set statusline+=\ %f
-" if the file has been modified, display a +
-set statusline+=%{&modified?'\ +':''}
-" switch to the right-hand items
-set statusline+=%=
-" display current line number
-set statusline+=\ %l
-" display current line column
-set statusline+=\ %c
+" " create statusline
+" set statusline=
+" " show git branch, e.g. [master], otherwise show empty string
+" set statusline+=%{strlen(fugitive#head())?'['.fugitive#head().']':''}
+" " display filename
+" set statusline+=\ %f
+" " if the file has been modified, display a +
+" set statusline+=%{&modified?'\ +':''}
+" " switch to the right-hand items
+" set statusline+=%=
+" " display current line number
+" set statusline+=\ %l
+" " display current line column
+" set statusline+=\ %c
 
-" move R object browser to the left
-let R_objbr_place="script,left"
+" " move R object browser to the left
+" let R_objbr_place="script,left"
 
 " make neoterm use relative instead of absolute paths
 let g:neoterm_use_relative_path=1
-let g:neoterm_position='vertical'
 
 " show tab characters
 set list
@@ -149,57 +149,57 @@ set listchars=tab:>-
 " FUNCTIONS
 " -----------------------------------------------
 
-function! DplyrChains()
-let line = getline('.')
-" c => %>%
-if match(line, ' c$') > 0
-  call setline('.', substitute(line, ' c$', ' %>%', 'e'))
-  execute 'normal! $'
-  " c => +
-elseif match(line, ' p$') > 0
-  call setline('.', substitute(line, ' p$', ' +', 'e'))
-  execute 'normal! $'
-endif
-endfunction
+" function! DplyrChains()
+" let line = getline('.')
+" " c => %>%
+" if match(line, ' c$') > 0
+"   call setline('.', substitute(line, ' c$', ' %>%', 'e'))
+"   execute 'normal! $'
+"   " c => +
+" elseif match(line, ' p$') > 0
+"   call setline('.', substitute(line, ' p$', ' +', 'e'))
+"   execute 'normal! $'
+" endif
+" endfunction
 
 function! DefaultWorkspace()
-" when moving to a terminal buffer, switch to insert mode
-autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-" when opening a terminal, switch to insert mode
-autocmd TermOpen * startinsert
+  " when moving to a terminal buffer, switch to insert mode
+  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+  " when opening a terminal, switch to insert mode
+  autocmd TermOpen * startinsert
 endfunction
 
-function! RLayout()
-silent! call StartR('R')
-silent! call RObjBrowser()
-vertical resize 60
-wincmd l
-vertical resize 80
-call RmdNextChunk()
-endfunction
+" function! RLayout()
+" silent! call StartR('R')
+" silent! call RObjBrowser()
+" vertical resize 60
+" wincmd l
+" vertical resize 80
+" call RmdNextChunk()
+" endfunction
 
-function! GulpLayout()
-sp .
-wincmd j
-resize 10
-term gulp
-endfunction
+" function! GulpLayout()
+" sp .
+" wincmd j
+" resize 10
+" term gulp
+" endfunction
 
-function! BlockLayout()
-sp .
-wincmd j
-resize 10
-term blockup
-endfunction
+" function! BlockLayout()
+" sp .
+" wincmd j
+" resize 10
+" term blockup
+" endfunction
 
-function! RunBuffer()
-silent! call neoterm#clear()
-silent! call neoterm#do('node %')
-endfunction
+" function! RunBuffer()
+"   silent! call neoterm#clear()
+"   silent! call neoterm#do('node script.js')
+" endfunction
 
-command! -register RLayout call RLayout()
-command! -register BlockLayout call BlockLayout()
-command! -register GulpLayout call GulpLayout()
+" command! -register RLayout call RLayout()
+" command! -register BlockLayout call BlockLayout()
+" command! -register GulpLayout call GulpLayout()
 command! -register DefaultWorkspace call DefaultWorkspace()
 
 call textobj#user#plugin('chunkblock', {
@@ -210,11 +210,11 @@ call textobj#user#plugin('chunkblock', {
 \ })
 
 function! ChunkBlock()
-normal! ^
-let head_pos = getpos('.')
-normal! $%$
-let tail_pos = getpos('.')
-return ['v', head_pos, tail_pos]
+  normal! ^
+  let head_pos = getpos('.')
+  normal! $%$
+  let tail_pos = getpos('.')
+  return ['v', head_pos, tail_pos]
 endfunction
 
 
@@ -225,11 +225,11 @@ endfunction
 " unmap <Esc> in fzf buffers, so we can still use esc to close
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
-" set Rmd comment string
-autocmd FileType rmd setlocal commentstring=#\ %s
+" " set Rmd comment string
+" autocmd FileType rmd setlocal commentstring=#\ %s
 
-" avoid typing %>% and +
-autocmd FileType rmd inoremap <buffer> <CR> <C-O>:call DplyrChains()<CR><CR>
+" " avoid typing %>% and +
+" autocmd FileType rmd inoremap <buffer> <CR> <C-O>:call DplyrChains()<CR><CR>
 
 
 
@@ -245,8 +245,8 @@ set clipboard+=unnamedplus
 " show the effects of a command incrementally
 set inccommand=nosplit
 
-" disable automatic <- insertion in R
-let R_assign = 0
+" " disable automatic <- insertion in R
+" let R_assign = 0
 
 " run checktime to force nvim to autoread buffers
 set autoread
@@ -260,7 +260,7 @@ augroup end
 let g:ale_lint_on_text_changed = 'never'
 
 " run ALE lint on enter
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 
 " run ALE fix on save
 let g:ale_fix_on_save = 1
@@ -419,5 +419,9 @@ noremap <c-z> :suspend<cr>:silent! checktime<cr>
 nnoremap <leader>al :ALELint<CR>
 nnoremap <leader>af :ALEFix<CR>
 
-" ,tt -> run buffer in node
-nnoremap <silent> <leader>tt :call RunBuffer()<CR>
+" " ,tt -> run buffer in node
+" nnoremap <silent> <leader>tt :call RunBuffer()<CR>
+
+" replay macro for each line of a visual selection
+xnoremap @q :normal @q<CR>
+xnoremap @@ :normal @@<CR>

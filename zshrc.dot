@@ -7,10 +7,7 @@ if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
 fi
 
-# # Enable python for neovim
-# # This used to be on, but the latest brew says don't.
-# # So I'll leave it here but turn it off.
-# export PATH=/usr/local/share/python:$PATH
+export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 # trash
 alias rm='trash'
@@ -48,7 +45,8 @@ alias  vg='nvim -O . . . -c DefaultWorkspace -c GulpLayout'
 # alias serve='python -m SimpleHTTPServer 3000'
 
 # FZF
-export FZF_DEFAULT_COMMAND='ag -g ""'
+# export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # Allow yarn globals to be executable
 export PATH="$(yarn global bin):$PATH"

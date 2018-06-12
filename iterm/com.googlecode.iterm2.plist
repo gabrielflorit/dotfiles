@@ -415,11 +415,11 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>2210 508 700 392 1280 -278 2560 1440 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>325 224 918 512 0 0 1280 777 </string>
+	<string>1524 1677 796 486 1440 798 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>186 106 810 527 0 0 1280 777 </string>
+	<string>107 155 810 527 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>643 0 634 777 0 0 1440 2537 </string>
+	<string>2970 1039 810 527 1440 798 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>1644 158 810 527 1280 0 2560 1440 </string>
 	<key>NeverWarnAboutShortLivedSessions_00E44F7C-25C6-4F8F-9400-AC6C0E694A8D</key>
@@ -1038,7 +1038,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraMono-Regular 16</string>
+			<string>FiraMono-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1741,6 +1741,8 @@
 			<string>/Users/floritg</string>
 		</dict>
 	</array>
+	<key>NoSyncHaveUsedCopyMode</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
@@ -1881,7 +1883,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-03-02T22:18:28Z</date>
+	<date>2018-06-05T22:04:14Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
@@ -1903,6 +1905,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5</string>
+	<string>3.2.0beta2</string>
 </dict>
 </plist>
