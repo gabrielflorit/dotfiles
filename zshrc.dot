@@ -35,11 +35,16 @@ alias bi='brew install'
 
 # Neovim
 alias vim='nvim -c DefaultWorkspace'
-alias   v='nvim -O . . . -c DefaultWorkspace'
+alias   v='nvim -O . . -c DefaultWorkspace'
 alias  v2='nvim -O . . -c DefaultWorkspace'
 alias  vr='nvim -c RLayout'
 alias  vb='nvim -O . . . -c DefaultWorkspace -c BlockLayout'
 alias  vg='nvim -O . . . -c DefaultWorkspace -c GulpLayout'
+
+# autoload -Uz compinit
+# compinit
+# # Completion for kitty
+# kitty + complete setup zsh | source /dev/stdin
 
 # Python
 # alias serve='python -m SimpleHTTPServer 3000'
@@ -59,10 +64,12 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # AWS
 export PATH=~/.local/bin:$PATH
 
-alias rts='aws s3 cp ~/Documents/dev/analysis/ s3://wapo-graphics-r/gabriel/ --recursive --exclude "*" --include "*.html"'
+# alias rts='aws s3 cp ~/Documents/dev/analysis/ s3://wapo-graphics-r/gabriel/ --recursive --exclude "*" --include "*.html"'
 
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=$HOME/Documents/dev
+# source /usr/local/bin/virtualenvwrapper.sh
+
 # export VIRTUALENVWRAPPER_SCRIPT=/Users/floritg/Library/Python/2.7/bin/virtualenvwrapper.sh
 # source /Users/floritg/Library/Python/2.7/bin/virtualenvwrapper_lazy.sh
 
@@ -71,3 +78,20 @@ alias rts='aws s3 cp ~/Documents/dev/analysis/ s3://wapo-graphics-r/gabriel/ --r
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# # The next line updates PATH for the Google Cloud SDK.
+# if [ -f '/Users/floritg/Documents/other/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/floritg/Documents/other/google-cloud-sdk/path.zsh.inc'; fi
+
+# # The next line enables shell command completion for gcloud.
+# if [ -f '/Users/floritg/Documents/other/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/floritg/Documents/other/google-cloud-sdk/completion.zsh.inc'; fi
+
+# choose one of these
+# export PYTHONPATH=$PYTHONPATH:/Users/floritg/Documents/other/BUILD/lib/python
+# export PATH=$PATH:/Users/floritg/Documents/other/BUILD/bin
+
+export PYTHONPATH=$PYTHONPATH:/Users/floritg/Documents/other/CUSTOM/lib/python
+export PATH=$PATH:/Users/floritg/Documents/other/CUSTOM/bin
+
+source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+
+
