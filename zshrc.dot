@@ -35,7 +35,7 @@ alias bi='brew install'
 
 # Neovim
 alias vim='nvim -c DefaultWorkspace'
-alias   v='nvim -O . . -c DefaultWorkspace'
+alias   v='nvim -O . . . -c DefaultWorkspace'
 alias  v2='nvim -O . . -c DefaultWorkspace'
 alias  vr='nvim -c RLayout'
 alias  vb='nvim -O . . . -c DefaultWorkspace -c BlockLayout'
