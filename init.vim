@@ -49,6 +49,8 @@ Plug 'wavded/vim-stylus'
 Plug 'yuezk/vim-js'
 " JSX syntax highlighting
 Plug 'maxmellon/vim-jsx-pretty'
+" MDX syntax highlighting
+Plug 'jxnblk/vim-mdx-js'
 
 
 
@@ -119,6 +121,9 @@ colorscheme onedark
 " color cursor red in terminal only
 highlight TermCursor ctermfg=red guifg=red
 
+" don't wrap
+set nowrap
+
 " tab settings
 set tabstop=2
 set expandtab
@@ -154,6 +159,12 @@ set statusline+=\ %c
 
 " ignore some things not in .gitignore
 set wildignore+=.git,.git/*,yarn.lock,.DS_Store,node_modules,build,LICENSE
+
+set foldmethod=indent
+set foldcolumn=0
+set foldlevel=99
+" let javaScript_fold=1
+" set foldlevelstart=99
 
 
 
@@ -211,6 +222,11 @@ autocmd!
 autocmd FocusGained * silent! checktime
 autocmd BufEnter * silent! checktime
 augroup end
+
+augroup dirvish_config
+  autocmd!
+  autocmd FileType dirvish silent! unmap <buffer> <S-k>
+augroup END
 
 
 
@@ -326,3 +342,5 @@ nnoremap <leader>r :%s//gc<Left><Left><Left>
 " ,cq -> close quickfix
 nnoremap <leader>cq :ccl<CR>
 
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
