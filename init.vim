@@ -1,3 +1,4 @@
+"
 " LOAD PLUGINS
 " -----------------------------------------------
 call plug#begin()
@@ -13,7 +14,7 @@ Plug 'justinmk/vim-dirvish'
 " helpers for unix
 Plug 'tpope/vim-eunuch'
 " use jk/kj instead of ESC
-Plug 'zhou13/vim-easyescape'
+" Plug 'zhou13/vim-easyescape'
 
 
 
@@ -87,6 +88,20 @@ call plug#end()
 
 " FUNCTIONS
 " -----------------------------------------------
+
+" function! Const()
+"   let line = getline('.')
+"   " c => %>%
+"   if match(line, ' c$') > 0
+"     call setline('.', substitute(line, ' c$', ' %>%', 'e'))
+"     execute 'normal! $'
+"     " c => +
+"   elseif match(line, ' p$') > 0
+"     call setline('.', substitute(line, ' p$', ' +', 'e'))
+"     execute 'normal! $'
+"   endif
+" endfunction
+
 function! DefaultWorkspace()
   " when moving to a terminal buffer, switch to insert mode
   autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
@@ -158,7 +173,7 @@ set statusline+=\ %c
 " -----------------------------------------------
 
 " ignore some things not in .gitignore
-set wildignore+=.git,.git/*,yarn.lock,.DS_Store,node_modules,build,LICENSE
+set wildignore+=.git,.git/*,yarn.lock,.DS_Store,node_modules,build,LICENSE,dist,.cache,.parcel-cache
 
 set foldmethod=indent
 set foldcolumn=0
@@ -183,13 +198,15 @@ autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
 command! -register DefaultWorkspace call DefaultWorkspace()
 
+" autocmd FileType javascript inoremap <buffer> <CR> <C-O>:call Const()<CR><CR>
+
 
 
 " EDITING
 " -----------------------------------------------
 
 " run ALE lint on enter
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 
 " always show the gutter
 let g:ale_sign_column_always = 1
@@ -205,6 +222,7 @@ let g:ale_javascript_eslint_use_global = 1
 
 " use eslint_d instead of eslint - it's MUCH faster
 let g:ale_javascript_eslint_executable = 'eslint_d'
+" let g:ale_javascript_eslint_executable = 'eslint'
 let g:ale_linters = {'javascript': ['eslint']}
 let g:ale_fixers = {'javascript': ['prettier']}
 
@@ -227,6 +245,8 @@ augroup dirvish_config
   autocmd!
   autocmd FileType dirvish silent! unmap <buffer> <S-k>
 augroup END
+
+let g:ale_list_window_size = 3
 
 
 
@@ -344,3 +364,12 @@ nnoremap <leader>cq :ccl<CR>
 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
+
+" ,ae -> enable ale
+nnoremap <leader>ae :ALEEnable<CR>
+" ,ad -> disable ale
+nnoremap <leader>ad :ALEDisable<CR>
+
+" ,ne -> edit file's snippets
+nnoremap <leader>ne :NeoSnippetEdit<CR>
+
